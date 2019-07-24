@@ -173,3 +173,40 @@ E:\24 June\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cach
 E:\24 June\cms_app\cms_app\obj\Debug\cms_app.dll
 E:\24 June\cms_app\cms_app\obj\Debug\cms_app.pdb
 D:\Ashu-Data\My Work\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache
+D:\Repositories\CMSApp\cms_app\bin\roslyn\csc.exe
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Repositories\CMSApp\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Repositories\CMSApp\cms_app\bin\roslyn\System.Collections.Immutable.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+D:\Repositories\CMSApp\cms_app\bin\roslyn\vbc.exe
+D:\Repositories\CMSApp\cms_app\bin\roslyn\VBCSCompiler.exe
+D:\Repositories\CMSApp\cms_app\bin\roslyn\VBCSCompiler.exe.config
+D:\Repositories\CMSApp\cms_app\bin\cms_app.dll.config
+D:\Repositories\CMSApp\cms_app\bin\cms_app.dll
+D:\Repositories\CMSApp\cms_app\bin\cms_app.pdb
+D:\Repositories\CMSApp\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Repositories\CMSApp\cms_app\bin\Microsoft.Web.Infrastructure.dll
+D:\Repositories\CMSApp\cms_app\bin\Newtonsoft.Json.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Helpers.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Mvc.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Razor.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.Deployment.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.dll
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.Razor.dll
+D:\Repositories\CMSApp\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Repositories\CMSApp\cms_app\bin\Newtonsoft.Json.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Razor.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.Deployment.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Webpages.Razor.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Helpers.xml
+D:\Repositories\CMSApp\cms_app\bin\System.Web.Mvc.xml
+D:\Repositories\CMSApp\cms_app\obj\Debug\cms_app.csprojAssemblyReference.cache
+D:\Repositories\CMSApp\cms_app\obj\Debug\cms_app.csproj.CoreCompileInputs.cache
+D:\Repositories\CMSApp\cms_app\obj\Debug\cms_app.csproj.CopyComplete
+D:\Repositories\CMSApp\cms_app\obj\Debug\cms_app.dll
+D:\Repositories\CMSApp\cms_app\obj\Debug\cms_app.pdb
