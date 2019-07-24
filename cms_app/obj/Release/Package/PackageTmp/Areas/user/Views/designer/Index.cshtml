@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "Designer's Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var userRole = "";
+    if (Session["userInfo"] != null)
+    {
+        cms_app.Models.LoginModalData mo = Session["userInfo"] as cms_app.Models.LoginModalData;
+        userRole = mo.userRole;
+    }
+
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Designer Detail</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count > 2)
+            {
+                System.Data.DataRow dr = ds.Tables[1].Rows[0];
+                <input type="hidden" id="hidMoldId" name="hidMoldId" value="@dr["MoldId"].ToString()" />
+
+                <div class="row clearfix">
+                    <div class="content-heading">
+                        <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Sample Information
+                    </div>
+                    <div class="mycontainer col-lg-12">
+                        <div class="col-lg-12 form-group form-row"></div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label for="spanMold" class="form-row-bold">Mold Name:</label>
+                                    <span id="spanMold">@dr["Mold Name"].ToString()</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="imgMoldPic" class="form-row-bold" style="vertical-align: top;">Mold Pic:</label>
+
+                                    @if (dr["Mold Picture"].ToString().Trim().Length > 0)
+                                    {
+                                        <span><img id="imgMoldPic" class="uploadedimg" src="/images/mold/@dr["Mold Picture"].ToString()" /></span>
+                                    }
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-row-bold">Technology:</label>
+                                    <span id="spanTechnology">@dr["Technology"].ToString()</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="imgTechPic" class="form-row-bold" style="vertical-align: top;">Tech Pac:</label>
+                                    @if (dr["Mold Picture"].ToString().Trim().Length > 0)
+                                    {
+                                        <span><img id="imgTechPic" class="uploadedimg" src="/images/mold/@dr["Tech Pac"].ToString()" /></span>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label for="spanMoldAssignDate" class="form-row-bold">Assign Date:</label>
+                                    <span id="spanMoldAssignDate">@dr["Assign Date"].ToString()</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="spanMoldLastSubDate" class="form-row-bold">Last Submition Date:</label>
+                                    <span id="spanMoldLastSubDate">@dr["Last Submition Date"].ToString()</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-row-bold">Remarks:</label>
+                                    <span id="spanRemark">@dr["Remarks"].ToString()</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                if (userRole.ToUpper().Trim() == "DESIGNER")
+                {
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        System.Data.DataRow dr1 = ds.Tables[2].Rows[0];
+                        <div class="row clearfix">
+                            <div class="content-heading">
+                                <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Admin Information
+                            </div>
+                            <div class="mycontainer col-lg-12">
+                                <div class="col-lg-12 form-group form-row"></div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label for="spanMold" class="form-row-bold">Assign Date:</label>
+                                            <span id="spanMold">@dr1["Admin Assign Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="imgMoldPic" class="form-row-bold">Last Submition Date:</label>
+                                            <span id="spanMold">@dr1["Admin Last Submition Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-row-bold">Remarks:</label>
+                                            <span id="spanTechnology">@dr1["AdminRemarks"].ToString()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                    
+
+                    <div class="row clearfix">
+                        <div class="content-heading">
+                            <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Designer Information
+                        </div>
+                        <div class="mycontainer col-lg-12">
+                            <div class="col-lg-12 form-group form-row"></div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <input id="chkIsOk" type="checkbox"><label for="chkIsOk" style="margin: 5px;">Request For Change</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDate" class="form-row-bold">Assign Date</label>
+                                        <span><input type="date" id="txtAssignDate" class="form-control required" readonly="readonly"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required" readonly="readonly"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="txtRemarks" class="form-row-bold">Remarks</label>
+                                        <span><input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+                else
+                {
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        System.Data.DataRow dr1 = ds.Tables[2].Rows[0];
+                        <div class="row clearfix">
+                            <div class="content-heading">
+                                <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Designer Information
+                            </div>
+                            <div class="mycontainer col-lg-12">
+                                <div class="col-lg-12 form-group form-row"></div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label for="spanMold" class="form-row-bold">Assign Date:</label>
+                                            <span id="spanMold">@dr1["Designer Assign Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="imgMoldPic" class="form-row-bold">Last Submition Date:</label>
+                                            <span id="spanMold">@dr1["Designer Last Submition Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-row-bold">Remarks:</label>
+                                            <span id="spanTechnology">@dr1["DesignerRemarks"].ToString()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+
+                    <div class="row clearfix">
+                        <div class="content-heading">
+                            <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Admin Information
+                        </div>
+                        <div class="mycontainer col-lg-12">
+                            <div class="col-lg-12 form-group form-row"></div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDate" class="form-row-bold">Assign Date</label>
+                                        <span><input type="date" id="txtAssignDate" class="form-control required"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="txtRemarks" class="form-row-bold">Remarks</label>
+                                        <span><input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-row-bold {
+        font-weight: 600;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/user/designer.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        resetDate();
+    });
+</script>
+

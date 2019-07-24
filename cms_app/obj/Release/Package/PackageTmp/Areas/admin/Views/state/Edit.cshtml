@@ -1,0 +1,75 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "State Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">State</li>
+</ol>
+
+<!-- Page Content -->
+<h1>State Master</h1>
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-5 col-sm-6 mb-3">
+        <div id="form1" class="card-body">
+            @if (Model != null && Model.Rows.Count > 0)
+            {
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" id="txtCode" class="form-control required" value="@Model.Rows[0][0]" readonly="readonly" />
+                        <label for="txtCode">State Code</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" id="txtName" class="form-control required" value="@Model.Rows[0][1]" autofocus="autofocus">
+                        <label for="txtName">State Name</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" id="txtRemarks" class="form-control" value="@Model.Rows[0][2]" />
+                        <label for="txtRemarks">Remarks</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            @if(Convert.ToBoolean(Model.Rows[0]["Active"]))
+                            {
+                                <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="chkActive" value="0" />
+                            }
+                            Active
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <input id="btnUpdate" type="submit" data-action="UPDATE" value="Update" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-6">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block"/>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/masterjs/state.js")"></script>
+
+

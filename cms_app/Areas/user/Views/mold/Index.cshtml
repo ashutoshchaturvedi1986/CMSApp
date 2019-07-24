@@ -1,0 +1,321 @@
+﻿
+@{
+    ViewBag.Title = "Mold Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<link href="@Url.Content("~/Scripts/JQMultiselect/jquery.multiselect.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Scripts/JQMultiselect/prettify.css")" rel="stylesheet" />
+<link href="@Url.Content("~/content/css/jquery-ui.css")" rel="stylesheet" />
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+<script src="@Url.Content("~/Scripts/JQMultiselect/jquery.multiselect.js")"></script>
+<script src="@Url.Content("~/Scripts/JQMultiselect/prettify.js")"></script>
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Mold Master</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Mold Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count>0)
+            {
+                System.Data.DataRow drMold = ds.Tables[5].Rows[0];
+                var moldcode = !string.IsNullOrEmpty(drMold["MoldName"].ToString()) ? drMold["MoldName"].ToString() : ds.Tables[1].Rows[0][0].ToString();
+
+                <input type="hidden" id="hidSize" value="@drMold["Size"]" />
+                
+
+                @*<input type="hidden" id="hidIsOrder" />*@
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Company</option>
+                                    @foreach (System.Data.DataRow dr in ds.Tables[0].Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                @if (ds.Tables.Count > 1)
+                                {
+                                    <input type="text" id="txtCode" class="form-control required" value="@moldcode" disabled="disabled" readonly="readonly">
+                                }
+                                else
+                                {
+                                    <input type="text" id="txtCode" class="form-control required" value="">
+                                }
+                                <label for="txtCode">Mold Code</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltCustomer" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Customer</option>
+                                    @if (ds.Tables.Count > 3)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[3].Rows)
+                                        {
+                                            if (drMold["CustomerId"].ToString() == dr[0].ToString())
+                                            {
+                                                <option value="@dr[0]" data-code="@dr[1]" data-address="@dr[3]" data-contactperson="@dr[4]" data-mobile="@dr[5]" selected="selected">@dr[2]</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@dr[0]" data-code="@dr[1]" data-address="@dr[3]" data-contactperson="@dr[4]" data-mobile="@dr[5]">@dr[2]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCustomerCode" class="form-control required" placeholder="Customer Alias" disabled="disabled" />
+                                <label for="txtCustomerCode">Customer Alias</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltTechnology" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Technology</option>
+                                    @if (ds.Tables.Count > 2)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[2].Rows)
+                                        {
+                                            if (dr["MDHCode"].ToString().ToUpper() == "TECH")
+                                            {
+                                                if (drMold["Technology"].ToString() == dr[0].ToString())
+                                                {
+                                                    <option value="@dr[0]" selected="selected">@dr[1]</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@dr[0]">@dr[1]</option>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltSize" class="form-control" multiple="multiple" style="width:95%;">
+                                    @if (ds.Tables.Count > 2)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[2].Rows)
+                                        {
+                                            if (dr["MDHCode"].ToString().ToUpper() == "SIZE")
+                                            {
+                                                <option value="@dr[0]">@dr[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPerson" class="form-control required" placeholder="Contact Person" value="@drMold["ContactPerson"]" />
+                                <label for="txtContactPerson">Contact Person</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPersonMobile" class="form-control required" placeholder="Mobile No" value="@drMold["ContactNo"]" />
+                                <label for="txtContactPersonMobile">Mobile No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltColor" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Color</option>
+                                    @if (ds.Tables.Count > 2)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[2].Rows)
+                                        {
+                                            if (dr["MDHCode"].ToString().ToUpper() == "COLOUR")
+                                            {
+                                                if (drMold["Colour"].ToString() == dr[0].ToString())
+                                                {
+                                                    <option value="@dr[0]" selected="selected">@dr[1]</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@dr[0]">@dr[1]</option>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltDesigner" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Designer</option>
+                                    @if (ds.Tables.Count > 4)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[4].Rows)
+                                        {
+                                            if (drMold["DesignerId"].ToString() == dr[0].ToString())
+                                            {
+                                                <option value="@dr[0]" selected="selected">@dr[2]</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@dr[0]">@dr[2]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCustomerAddress" class="form-control required" placeholder="Customer Address" value="@drMold["Address"]" />
+                                <label for="txtCustomerAddress">Customer Address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtAddress" class="form-control" placeholder="Courier Address" value="@drMold["CourierAddress"]" />
+                                <label for="txtAddress">Courier Address</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" value="@drMold["Remarks"]" />
+                                <label for="txtRemarks">Remarks</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="moldUpload">Mold Pic</label>
+                            <span>
+                                <input type="file" name="moldUpload" id="moldUpload" class="form-control" style="padding-top:3px;">
+                                @if (drMold["MoldPicture"].ToString().Length>0)
+                                {
+                                    <img id="imgMoldPic" class="uploadedimg" src="/images/mold/@drMold["MoldPicture"]" />
+                                }
+                                else
+                                {
+                                    <img id="imgMoldPic" class="uploadedimg" src="" />
+                                }
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="techPacUpload">Tech Pac</label>
+                            <span>
+                                <input type="file" name="techPacUpload" id="techPacUpload" class="form-control" style="padding-top:3px;">
+                                @if (drMold["TechPacDetail"].ToString().Length > 0)
+                                {
+                                    <img id="imgTechPic" class="uploadedimg" src="/images/mold/@drMold["TechPacDetail"]" />
+                                }
+                                else
+                                {
+                                    <img id="imgTechPic" class="uploadedimg" src="" />
+                                }
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtAssignDate">Assign Date</label>
+                            <span>
+                                <input type="date" id="txtAssignDate" class="form-control required" value="@drMold["AssignDate"]" />
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtLastSubmitionDate">Last Submition Date</label>
+                            <span>
+                                <input type="date" id="txtLastSubmitionDate" class="form-control required" value="@drMold["LastSubmitionDate"]">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/user/moldjs.js")"></script>
+<script type="text/javascript">
+    var code = '@ViewBag.MoldId';
+    $(document).ready(function () {
+        $("#sltSize").multiselect({ selectedList: 1, noneSelectedText: "Select Size", selectedText: '# Size(s) Selected' });
+
+        if (code.length > 0) {
+            ResetMoldData();
+        }
+        //CreateNewDeveloperCode(code);
+    });
+</script>
+<style type="text/css">
+    .required, .ui-multiselect-menu {
+        border: solid 1px rgb(169, 169, 169) !important;
+    }
+
+        .required.errorvalidate {
+            border: solid 1px red !important;
+        }
+
+    .ui-multiselect {
+        height: 38px;
+    }
+
+        .ui-multiselect .ui-icon-triangle-1-s {
+            background-position: -64px -12px !important;
+        }
+</style>

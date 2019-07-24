@@ -1,0 +1,106 @@
+﻿/*!
+ * Start Bootstrap - SB Admin v5.0.2 (https://startbootstrap.com/template-overviews/sb-admin)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
+ */
+
+
+
+
+
+body.fixed-nav #content-wrapper {
+  margin-top: 56px;
+  padding-left: 90px;
+}
+
+body.fixed-nav.sidebar-toggled #content-wrapper {
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  body.fixed-nav #content-wrapper {
+    padding-left: 225px;
+  }
+  body.fixed-nav.sidebar-toggled #content-wrapper {
+    padding-left: 90px;
+  }
+}
+
+
+
+.smaller {
+  font-size: 0.7rem;
+}
+
+.o-hidden {
+  overflow: hidden !important;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+
+
+
+
+@media (min-width: 768px) {
+  
+}
+
+.sidebar.fixed-top {
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.card-body-icon {
+  position: absolute;
+  z-index: 0;
+  top: -1.25rem;
+  right: -1rem;
+  opacity: 0.4;
+  font-size: 5rem;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-columns {
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns {
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+
+
+.card-register {
+  max-width: 40rem;
+}
+
+
+
+
+
+.input-sm {height: 30px;padding: 5px 10px;font-size: 12px;line-height: 1.5;border-radius: 3px;width: 100% !important;}
+.input-lg {height: 46px;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;}
+.rounded-btn {border-radius: 50px;color: rgba(255,255,255,.8);background: #222;border: 2px solid rgba(255,255,255,.8);font-size: 18px;line-height: 40px;padding: 0 25px;}
+.rounded-btn:active, .rounded-btn:focus,.rounded-btn:hover, .rounded-btn:visited {color: #fff;border: 2px solid #fff;outline: 0;}

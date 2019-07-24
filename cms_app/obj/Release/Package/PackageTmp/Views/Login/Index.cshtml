@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+
+    <link href="@Url.Content("~/content/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/content/css/sb-admin.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/content/js/jquery.min.js")"></script>
+
+
+    <script type="text/javascript">
+        window.history.forward();
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtUserId,#txtPassword").keyup(function () {
+                $('#msg').html('');
+            });
+
+            $("#frmLogin").submit(function (e) {
+                var userId = $('#txtUserId').val().trim();
+                var userPass = $("#txtPassword").val().trim();
+
+                if (userId == "" || userPass == "") {
+                    if (userId == "") {
+                        alert("Please fill valid user id");
+                        $('#txtUserId').focus();
+                    }
+                    else if (userPass == "") {
+                        alert("Please fill valid user password");
+                        $('#txtPassword').focus();
+                    }
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</head>
+
+
+<body class="bg-dark" onload="preventBack();" onpageshow="if (event.persisted) preventBack();" onunload="">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                @using (Html.BeginForm("CheckLogin", "Login", FormMethod.Post, new { id = "frmLogin" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" id="txtUserId" name="txtUserId" class="form-control" placeholder="User Id" required="required" autofocus="autofocus">
+                            <label for="txtUserId">User Id</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password" required="required">
+                            <label for="txtPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me">
+                                Remember Password
+                            </label>
+                        </div>
+                    </div>
+                    <p id="msg"> @TempData["ErrorMessage"]</p>
+                    <input type="submit" class="btn btn-primary btn-block" id="btnLogIn" name="btnLogIn" value="Log In" />
+                }
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

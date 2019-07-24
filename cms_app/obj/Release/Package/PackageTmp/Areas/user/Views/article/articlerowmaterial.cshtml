@@ -1,0 +1,191 @@
+﻿@using System.Activities.Statements
+
+@{
+    ViewBag.Title = "Article's Row Material Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Article Row Material Detail</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ViewData["dsData"] != null)
+            {
+                System.Data.DataRow dr = ds.Tables[0].Rows[0];
+                <input type="hidden" id="hidMoldId" name="hidArticleId" value="@dr["ArticleId"].ToString()" />
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label for="spanArticleCode" class="form-row-bold">Article Code:</label>
+                            <span id="spanMold">@dr["ArticleCode"].ToString()</span>
+                        </div>
+                        @*<div class="col-md-3 hide">
+                            <label for="spanProcess" class="form-row-bold">Process:</label>
+                            <span id="spanProcess">@dr["Process"].ToString()</span>
+                        </div>
+                        <div class="col-md-3 hide">
+                            <label for="spanSubProcess" class="form-row-bold">Sub Process:</label>
+                            <span id="spanSubProcess">@dr["SubProcess"].ToString()</span>
+                        </div>*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12 col-lg-12">
+                            <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="width:10%">Process</th>
+                                    <th style="width:10%">Sub Process</th>
+                                    <th>Raw Material</th>
+                                    <th>Size</th>
+                                    <th>Norms</th>
+                                    <th>Variance(%)</th>
+                                    <th>% Value</th>
+                                    <th>Other Size</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbProcessPriority">
+                                @foreach (System.Data.DataRow dr1 in ds.Tables[2].Rows)
+                                {
+                                    <tr>
+                                        <td>@dr1["Process"]</td>
+                                        <td data-code="@dr1["RawMaterialId"]">@dr1["SubProcess"]</td>
+                                        <td>
+                                            @*<div class="form-label-group">
+                                                <input type="text" id="txtRawMaterial" class="form-control required" placeholder="Raw Material" value="@dr1["RawMaterial"]" />
+                                                <label for="txtRawMaterial">Raw Material</label>
+                                            </div>*@
+                                            <span>
+                                                <select id="sltRawMaterial" class="form-control">
+                                                    <option value="0">Select</option>
+                                                    @foreach (System.Data.DataRow dr2 in ds.Tables[3].Rows)
+                                                    {
+                                                        if (dr1["RawMaterial"].ToString().ToUpper() == dr2["MaterialCreationId"].ToString().ToUpper())
+                                                        {
+                                                            <option value="@dr2[0]" selected="selected">@dr2[1]</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@dr2[0]">@dr2[1]</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <select id="sltSize" class="form-control">
+                                                <option value="0">Select</option>
+                                                @foreach (System.Data.DataRow dr2 in ds.Tables[1].Rows)
+                                                {
+                                                    if (dr1["StandardSize"].ToString().ToUpper() == dr2["MDDCode"].ToString().ToUpper())
+                                                    {
+                                                        <option value="@dr2[0]" selected="selected">@dr2[1]</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@dr2[0]">@dr2[1]</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" value="@dr1["Norms"]" />
+                                            @*<div class="form-label-group">
+                                                <input type="text" id="txtNorms" class="form-control required" placeholder="Norms" value="@dr1["Norms"]" />
+                                                <label for="txtNorms">Norms</label>
+                                            </div>*@
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" value="@dr1["StandardVariance"]" />
+                                            @*<div class="form-label-group">
+                                                <input type="text" id="txtStandardVariance" class="form-control required" placeholder="Standard Variance" value="@dr1["StandardVariance"]" />
+                                                <label for="txtStandardVariance">Standard Variance</label>
+                                            </div>*@
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" value="@dr1["PerValue"]" />
+                                            @*<div class="form-label-group">
+                                                <input type="text" id="txtEnterPerValue" class="form-control required" placeholder="Enter % Value" value="@dr1["PerValue"]" />
+                                                <label for="txtEnterPerValue">Enter % Value</label>
+                                            </div>*@
+                                        </td>
+                                        <td>
+                                            <select id="sltSize" class="form-control">
+                                                <option value="0">Select</option>
+                                                @foreach (System.Data.DataRow dr2 in ds.Tables[1].Rows)
+                                                {
+                                                    if (dr1["OtherSize"].ToString().ToUpper() == dr2["MDDCode"].ToString().ToUpper())
+                                                    {
+                                                        <option value="@dr2[0]" selected="selected">@dr2[1]</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@dr2[0]">@dr2[1]</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnSaveRawInfo" type="submit" data-action="INSERT" value="Save" class="btn btn-primary rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-row-bold {
+        font-weight: 600;
+    }
+    #tbProcessPriority .form-control{padding:0;}
+    #tbProcessPriority select{height:auto;}
+</style>
+<script src="@Url.Content("~/Scripts/user/article.js")"></script>
+
+<script type="text/javascript">
+    listurl = '@Url.Action("articlelist")';
+    //$(document).ready(function () {
+    //    $('#btnSave').click(function () {
+    //        var size = '';
+    //        alert(saveurl);
+    //        alert(listurl);
+    //        return;
+    //    });
+    //})
+</script>

@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Activity Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Department Master</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Department Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count > 1)
+            {
+                System.Data.DataRow dr = ds.Tables[0].Rows[0];
+
+                <input type="hidden" id="hidId" value="@dr["DeptId"]" />
+                @*
+                <input type="hidden" id="hidHeadId" value="@dr["DepartmentHead"]" />*@
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <span>
+                                <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select</option>
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[1].Rows)
+                                    {
+                                        if (dr["CompanyCode"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[1]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <span>
+                                <select id="sltDeptHead" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select Head</option>
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[2].Rows)
+                                    {
+                                        if (dr["DepartmentHead"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[2]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[2]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCode" class="form-control required" value="@dr["DeptCode"]" readonly="readonly" />
+                                <label for="txtCode">Dept Code</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtName" class="form-control required" value="@dr["Department"]" />
+                                <label for="txtName">Dept Name</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <div class="form-label-group">
+                                <input type="text" id="txtRemarks" class="form-control" value="@dr["Remarks"]" />
+                                <label for="txtRemarks">Remarks</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            @if (Convert.ToBoolean(dr["Active"]))
+                            {
+                                <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="chkActive" value="0" />
+                            }
+                            Active
+                        </label>
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnUpdate" type="submit" data-action="UPDATE" value="UPDATE" class="btn rounded-btn btn-block" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var isshowList = 0;
+</script>
+<script src="@Url.Content("~/Scripts/masterjs/department.js")"></script>

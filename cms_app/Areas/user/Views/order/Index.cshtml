@@ -1,0 +1,177 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Create Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    string userId = String.Empty;
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Create Order</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ViewData["dsData"] != null)
+            {
+                <input type="hidden" id="hidArticleId" name="hidArticleId" value="@ds.Tables[1].Rows[0]["ArticleId"].ToString()" />
+                <input type="hidden" id="orderId" value="@ds.Tables[1].Rows[0]["OrderId"].ToString()" />
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtArticleCode" class="form-control required" value="@ds.Tables[1].Rows[0]["ArticleCode"].ToString()" disabled="disabled" readonly="readonly">
+                                <label for="txtArticleCode">Article Code</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltCustomer" class="form-control required">
+                                    <option value="0">Select Customer</option>
+                                    @if (ds.Tables.Count > 3)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[3].Rows)
+                                        {
+                                            <option value="@dr[0]" data-code="@dr[1]" data-address="@dr[3]" data-contactperson="@dr[4]" data-mobile="@dr[5]">@dr[2]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCustomerCode" class="form-control" placeholder="Customer Alias" disabled="disabled">
+                                <label for="txtCustomerCode">Customer Alias</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <span>
+                                <select id="sltSalePerson" class="form-control required">
+                                    <option value="0">Select Sales Person</option>
+                                    @if (ds.Tables.Count > 4)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[4].Rows)
+                                        {
+                                            <option value="@dr[0]">@dr[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPerson" class="form-control required" placeholder="Contact Person">
+                                <label for="txtContactPerson">Contact Person</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPersonMobile" class="form-control required" placeholder="Mobile No">
+                                <label for="txtContactPersonMobile">Mobile No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCustomerAddress" class="form-control required" placeholder="Customer Address">
+                                <label for="txtCustomerAddress">Customer Address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="txtOrderDate">Order Date</label>
+                            <span><input type="date" id="txtOrderDate" class="form-control required"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtOrderExpDate">Order Exp Date</label>
+                            <span><input type="date" id="txtOrderExpDate" class="form-control required"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtRemarks">Remarks</label>
+                            <span><input type="text" id="txtRemarks" class="form-control" placeholder="Remarks"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-12 col-sm-12">
+                            <div id="viewPlaceHolder" class="table-responsive">
+                                <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Size</th>
+                                            <th>Quantity</th>
+                                            <th>Rate</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (DataRow row in ds.Tables[2].Rows)
+                                        {
+                                            <tr data-size="@row[0]" data-orderdetailsid="@row[1]" class="detailsData">
+                                                <td><input type="text" value="@row[0]" class="size form-control input-sm" disabled="disabled" /></td>
+                                                <td><input type="text" value="@row[3]" onblur="SetTotalFields('QUANTITY', '@row[0]')" class="qty form-control input-sm qnt" /></td>
+                                                <td><input type="text" value="@row[4]" onblur="SetTotalFields('RATE', '@row[0]')" class="rate form-control input-sm qnt" /></td>
+                                                <td><input type="text" value="@(row[5])" class="amt form-control input-sm" disabled="disabled" /></td>
+                                            </tr>
+                                        }
+
+                                        <tr>
+                                            <td colspan="4" class="invoiceTotal" style="text-align: right;">Total Quantity:</td>
+                                            <td class="invoiceTotal"><span id="totalQty">NA</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="4" class="invoiceTotal" style="text-align: right;">Total Amount:</td>
+                                            <td class="invoiceTotal">Rs. <span id="totalAmt">NA</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="4" class="invoiceTotal" style="text-align: right;">Average Rate:</td>
+                                            <td class="invoiceTotal">Rs. <span id="avgRate">NA</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/user/order.js")"></script>

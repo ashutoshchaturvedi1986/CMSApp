@@ -1,0 +1,175 @@
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\csc.exe
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\System.Collections.Immutable.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\vbc.exe
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe.config
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\cms_app.dll.config
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\cms_app.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\cms_app.pdb
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\Microsoft.Web.Infrastructure.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Helpers.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Mvc.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Razor.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.Deployment.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.Razor.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Razor.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.Deployment.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Webpages.Razor.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Helpers.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\System.Web.Mvc.xml
+D:\Ashu-Data\MyAngular\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache
+D:\Ashu-Data\MyAngular\cms_app\cms_app\obj\Debug\cms_app.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\obj\Debug\cms_app.pdb
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\Newtonsoft.Json.dll
+D:\Ashu-Data\MyAngular\cms_app\cms_app\bin\Newtonsoft.Json.xml
+F:\cms_app\cms_app\bin\roslyn\csc.exe
+F:\cms_app\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\cms_app\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\cms_app\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\cms_app\cms_app\bin\roslyn\System.Collections.Immutable.dll
+F:\cms_app\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+F:\cms_app\cms_app\bin\roslyn\vbc.exe
+F:\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe
+F:\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe.config
+F:\cms_app\cms_app\bin\cms_app.dll.config
+F:\cms_app\cms_app\bin\cms_app.dll
+F:\cms_app\cms_app\bin\cms_app.pdb
+F:\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\cms_app\cms_app\bin\Microsoft.Web.Infrastructure.dll
+F:\cms_app\cms_app\bin\Newtonsoft.Json.dll
+F:\cms_app\cms_app\bin\System.Web.Helpers.dll
+F:\cms_app\cms_app\bin\System.Web.Mvc.dll
+F:\cms_app\cms_app\bin\System.Web.Razor.dll
+F:\cms_app\cms_app\bin\System.Web.Webpages.Deployment.dll
+F:\cms_app\cms_app\bin\System.Web.Webpages.dll
+F:\cms_app\cms_app\bin\System.Web.Webpages.Razor.dll
+F:\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\cms_app\cms_app\bin\Newtonsoft.Json.xml
+F:\cms_app\cms_app\bin\System.Web.Razor.xml
+F:\cms_app\cms_app\bin\System.Web.Webpages.xml
+F:\cms_app\cms_app\bin\System.Web.Webpages.Deployment.xml
+F:\cms_app\cms_app\bin\System.Web.Webpages.Razor.xml
+F:\cms_app\cms_app\bin\System.Web.Helpers.xml
+F:\cms_app\cms_app\bin\System.Web.Mvc.xml
+F:\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache
+F:\cms_app\cms_app\obj\Debug\cms_app.dll
+F:\cms_app\cms_app\obj\Debug\cms_app.pdb
+E:\My Personal\cms_app\cms_app\bin\roslyn\csc.exe
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\My Personal\cms_app\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\My Personal\cms_app\cms_app\bin\roslyn\System.Collections.Immutable.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+E:\My Personal\cms_app\cms_app\bin\roslyn\vbc.exe
+E:\My Personal\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe
+E:\My Personal\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe.config
+E:\My Personal\cms_app\cms_app\bin\cms_app.dll.config
+E:\My Personal\cms_app\cms_app\bin\cms_app.dll
+E:\My Personal\cms_app\cms_app\bin\cms_app.pdb
+E:\My Personal\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\My Personal\cms_app\cms_app\bin\Microsoft.Web.Infrastructure.dll
+E:\My Personal\cms_app\cms_app\bin\Newtonsoft.Json.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Helpers.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Mvc.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Razor.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.Deployment.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.dll
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.Razor.dll
+E:\My Personal\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\My Personal\cms_app\cms_app\bin\Newtonsoft.Json.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Razor.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.Deployment.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Webpages.Razor.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Helpers.xml
+E:\My Personal\cms_app\cms_app\bin\System.Web.Mvc.xml
+E:\My Personal\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache
+E:\My Personal\cms_app\cms_app\obj\Debug\cms_app.dll
+E:\My Personal\cms_app\cms_app\obj\Debug\cms_app.pdb
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\csc.exe
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\System.Collections.Immutable.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\vbc.exe
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe.config
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\cms_app.dll.config
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\cms_app.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\cms_app.pdb
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\Microsoft.Web.Infrastructure.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\Newtonsoft.Json.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Helpers.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Mvc.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Razor.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.Deployment.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.Razor.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\Newtonsoft.Json.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Razor.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.Deployment.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Webpages.Razor.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Helpers.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\bin\System.Web.Mvc.xml
+D:\Ashu-Data\My Work\cms_app\cms_app\obj\Debug\cms_app.dll
+D:\Ashu-Data\My Work\cms_app\cms_app\obj\Debug\cms_app.pdb
+E:\24 June\cms_app\cms_app\bin\roslyn\csc.exe
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\24 June\cms_app\cms_app\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\24 June\cms_app\cms_app\bin\roslyn\System.Collections.Immutable.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\System.Reflection.Metadata.dll
+E:\24 June\cms_app\cms_app\bin\roslyn\vbc.exe
+E:\24 June\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe
+E:\24 June\cms_app\cms_app\bin\roslyn\VBCSCompiler.exe.config
+E:\24 June\cms_app\cms_app\bin\cms_app.dll.config
+E:\24 June\cms_app\cms_app\bin\cms_app.dll
+E:\24 June\cms_app\cms_app\bin\cms_app.pdb
+E:\24 June\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\24 June\cms_app\cms_app\bin\Microsoft.Web.Infrastructure.dll
+E:\24 June\cms_app\cms_app\bin\Newtonsoft.Json.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Helpers.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Mvc.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Razor.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.Deployment.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.dll
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.Razor.dll
+E:\24 June\cms_app\cms_app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\24 June\cms_app\cms_app\bin\Newtonsoft.Json.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Razor.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.Deployment.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Webpages.Razor.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Helpers.xml
+E:\24 June\cms_app\cms_app\bin\System.Web.Mvc.xml
+E:\24 June\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache
+E:\24 June\cms_app\cms_app\obj\Debug\cms_app.dll
+E:\24 June\cms_app\cms_app\obj\Debug\cms_app.pdb
+D:\Ashu-Data\My Work\cms_app\cms_app\obj\Debug\cms_app.csprojResolveAssemblyReference.cache

@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Company</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Company Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count>2)
+            {
+                System.Data.DataRow dr = ds.Tables[2].Rows[0];
+
+                @*<input type="hidden" id="hidCityId" value="@dr["CityId"]" />*@
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtName" class="form-control required" value="@dr["Company"]" autofocus="autofocus"/>
+                                <label for="txtName">Company Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCode" class="form-control required" value="@dr["Code"]" readonly="readonly" />
+                                <label for="txtCode">Company Code</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtCompanyAlias" class="form-control required" value="@dr["Alias"]" />
+                                <label for="txtCompanyAlias">Company Alias</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="sltState">State</label>
+                            <span>
+                                <select id="sltState" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select</option>
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                    {
+                                        if (dr["StateId"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[1]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sltCity">City</label>
+                            <span>
+                                <select id="sltCity" class="form-control required">
+                                    <option value="0">Select City</option>
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[1].Rows)
+                                    {
+                                        if (dr["CityId"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[1]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtAddress">Address</label>
+                            <span><input type="text" id="txtAddress" class="form-control" value="@dr["Address"]" /></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtBankName" class="form-control" value="@dr["BankName"]" />
+                                <label for="txtBankName">Bank Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtBankAcctNo" class="form-control" value="@dr["BankAcctNo"]" />
+                                <label for="txtBankAcctNo">Bank AcctNo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtBranchName" class="form-control" value="@dr["BranchName"]" />
+                                <label for="txtBranchName">Branch Name</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtPANNo" class="form-control" value="@dr["PANNo"]" />
+                                <label for="txtPANNo">PAN No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtMICRNo" class="form-control" value="@dr["MICRNo"]" />
+                                <label for="txtMICRNo">MICR No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtGST" class="form-control" value="@dr["GSTNo"]" />
+                                <label for="txtGST">GST No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="email" id="txtEmail" class="form-control" value="@dr["ContactEmail"]" />
+                                <label for="txtEmail">Email Id</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtWebsite" class="form-control" value="@dr["Website"]" />
+                                <label for="txtWebsite">Website</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtPhone" class="form-control" value="@dr["Phone"]" />
+                                <label for="txtPhone">Phone No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtFax" class="form-control" value="@dr["Fax"]" />
+                                <label for="txtFax">Fax No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPerson" class="form-control" value="@dr["ContactPerson"]" placeholder="Contact Person" />
+                                <label for="txtContactPerson">Contact Person</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label-group">
+                                <input type="text" id="txtContactPersonMob" class="form-control" value="@dr["MobileNo"]" placeholder="Mobile No" />
+                                <label for="txtContactPersonMob">Mobile No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    @if(Convert.ToBoolean(dr["Active"]))
+                                    {
+                                        <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" id="chkActive" value="0" />
+                                    }
+                                    Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnUpdate" type="submit" data-action="UPDATE" value="Update" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/masterjs/company.js")"></script>

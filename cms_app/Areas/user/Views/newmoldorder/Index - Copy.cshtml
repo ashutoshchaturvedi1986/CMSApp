@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Place Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Mold Order</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label for="spanMold" class="form-row-bold">Mold Name:</label>
+                        <span id="spanMold"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="imgMoldPic" class="form-row-bold" style="vertical-align: top;">Mold Pic:</label>
+                        <span><img id="imgMoldPic" src="" /></span>
+                    </div>             
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Technology:</label>
+                        <span id="spanTechnology"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="imgTechPic" class="form-row-bold" style="vertical-align: top;">Tech Pac:</label>
+                        <span><img id="imgTechPic" src="" /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPerson" class="form-control required" placeholder="Contact Person">
+                            <label for="txtContactPerson">Contact Person</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPersonMobile" class="form-control required" placeholder="Mobile No">
+                            <label for="txtContactPersonMobile">Contact No.</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtSize" class="form-control required" placeholder="Size" />
+                            <label for="txtSize">Size</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtMoldMaker" class="form-control required" placeholder="Mold Maker">
+                            <label for="txtMoldMaker">Mold Maker</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtFollowUpPerson" class="form-control required" placeholder="Follow Up Person">
+                            <label for="txtFollowUpPerson">Follow Up Person</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGSTNo" class="form-control required" placeholder="GST No" />
+                            <label for="txtGSTNo">GST No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGradientRequirement" class="form-control" placeholder="Gradient Requirement">
+                            <label for="txtGradientRequirement">Gradient Requirement</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtShippingInstruction" class="form-control" placeholder="Shipping Instruction">
+                            <label for="txtShippingInstruction">Shipping Instruction</label>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtAddress" class="form-control" placeholder="Courier  Address">
+                            <label for="txtAddress">Address</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks">
+                            <label for="txtRemarks">Remarks</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label for="txtOrderDate" class="form-row-bold">Order Date</label>
+                        <span><input type="date" id="txtOrderDate" class="form-control required"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSaveOrder" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-row-bold{font-weight:600;}
+</style>
+<script src="@Url.Content("~/Scripts/user/moldjs.js")"></script>
+<script language="javascript" type="text/javascript">
+    var code = '@ViewBag.MoldId';
+
+    $(document).ready(function () {
+        BindMoldDetail();
+        $("#btnSaveOrder").click(function () {
+            if (!isFormValidate('#form1')) {
+                alert('Please fill required field.');
+                return;
+            }
+
+            // Get All selected values and text of orgunit from dropdown
+            var fileData = new FormData();
+            fileData.append('MoldId', code);
+            fileData.append('contactperson', $('#txtContactPerson').val().trim());
+            fileData.append('contactpersonmobile', $('#txtContactPersonMobile').val().trim());
+            fileData.append('followUpPerson', $('#txtFollowUpPerson').val().trim());
+            fileData.append('moldMaker', $('#txtMoldMaker').val().trim());
+            fileData.append('size', $('#txtSize').val().trim());
+            fileData.append('gstno', $('#txtGSTNo').val().trim());
+            fileData.append('gradientRequirement', $('#txtGradientRequirement').val().trim());
+            fileData.append('shippingInstruction', $('#txtShippingInstruction').val().trim());
+            fileData.append('address', $('#txtAddress').val().trim());
+            fileData.append('remarks', $('#txtRemarks').val().trim());
+            fileData.append('orderDate', $('#txtOrderDate').val().trim());
+            fileData.append('lastSubmitionDate', $('#txtLastSubmitionDate').val().trim());
+
+
+            $.ajax({
+                type: "POST",
+                url: sessionurl,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Yes") {
+                        saveMasterDataFormWithFile(saveurl, fileData, listurl);
+                    } else {
+                        window.location.href = data;
+                        // session out here. for redirect to login
+                    }
+                }, error: function (result) {
+                    alert('There is some technical error, please contact Administrator.');
+                    //$.unblockUI();
+                }
+            });
+        });
+    });
+
+    function BindMoldDetail() {
+        if (code.length > 0) {
+            var ur = saveurl.replace('SaveResult', 'GetMasterListForEdit');
+            $.ajax({
+                type: "POST",
+                url: ur,
+                dataType: "json",
+                data: { 'prmId': code},
+                success: function (result) {
+                    if (result != null) {
+                        var obj = result[0];
+
+                        $('#spanMold').html(obj.MoldName);
+                        $('#spanTechnology').html(obj.Technology);
+
+                        $('#txtContactPerson').val(obj.ContactPerson);
+                        $('#txtContactPersonMobile').val(obj.ContactNo);
+
+                        if (obj.MoldPicture.trim().length > 0) {
+                            $('#imgMoldPic').attr('src', '/images/mold/' + obj.MoldPicture);
+                        }
+                        if (obj.TechPacDetail.trim().length > 0) {
+                            $('#imgTechPic').attr('src', '/images/mold/' + obj.TechPacDetail);
+                        }
+                    }
+                }, error: function (result) {
+                    alert('There is some technical error, please contact Administrator.');
+                }
+            });
+        }
+    }
+</script>

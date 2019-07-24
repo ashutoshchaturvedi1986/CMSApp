@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Material Group";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Material Group</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Material Group Master</h1>
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count > 1)
+            {
+                System.Data.DataRow dr = ds.Tables[0].Rows[0];
+
+                <input type="hidden" id="hidId" value="@dr["MaterialGroupId"]" />
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <span>
+                                <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                    <option value="0">Select</option>
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[1].Rows)
+                                    {
+                                        if (dr["CompanyCode"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[1]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <span>
+                                <select id="sltMaterialGroup" class="form-control required" autofocus="autofocus">
+                                    @foreach (System.Data.DataRow dr1 in ds.Tables[2].Rows)
+                                    {
+                                        if (dr["MaterialGroupUnder"].ToString() == dr1[0].ToString())
+                                        {
+                                            <option value="@dr1[0]" selected="selected">@dr1[1]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dr1[0]">@dr1[1]</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <div class="form-label-group">
+                                <input type="text" id="txtName" class="form-control required" value="@dr[1]" autofocus="autofocus" />
+                                <label for="txtName">Group Name</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-xl-5 col-md-5 col-sm-12">
+                            <div class="form-label-group">
+                                <input type="text" id="txtRemarks" class="form-control" value="@dr["Remarks"]" />
+                                <label for="txtRemarks">Remarks</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            @if (Convert.ToBoolean(dr["Active"]))
+                            {
+                                <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="chkActive" value="0" />
+                            }
+                            Active
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input id="hidCityId" type="hidden" value="0" />
+                    <div class="form-row">
+                        <div class="col-xl-2 col-md-2">
+                            <input id="btnUpdate" type="submit" data-action="UPDATE" value="Update" class="btn btn-primary rounded-btn btn-block" />
+                        </div>
+                        <div class="col-xl-2 col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn btn-secondary rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var isshowList = 0;
+</script>
+<script src="@Url.Content("~/Scripts/masterjs/materialgroup.js")"></script>
+@*<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        if ($('#sltCompany option').length == 2)
+            $('#sltCompany').attr("disabled", "disabled");
+
+        $("#btnUpdate").click(function () {
+            if (!isFormValidate('#form1')) {
+                alert('Please fill required field.');
+                return;
+            }
+
+            // Get All selected values and text of orgunit from dropdown
+            var Id = $('#hidId').val();
+            var comp = $('#sltCompany').val();
+            var group = $('#sltMaterialGroup').val();
+            var name = $('#txtName').val().trim();
+            var remarks = $('#txtRemarks').val().trim();
+            var active = $('#chkActive').prop('checked');
+            var action = $(this).attr('data-action');
+
+            var prmdata = { prmMaterialGroupId: Id, prmMaterialGroupName: name, prmMaterialGroupUnder: group, prmCompanyCode: comp, prmRemarks: remarks, prmActive: active, prmAction: action };
+
+            $.ajax({
+                type: "POST",
+                url: sessionurl,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Yes") {
+                        saveMasterDataForm(saveurl, prmdata, listurl);
+                    } else {
+                        window.location.href = data;
+                        // session out here. for redirect to login
+                    }
+                }
+            });
+        });
+    });
+</script>*@
+

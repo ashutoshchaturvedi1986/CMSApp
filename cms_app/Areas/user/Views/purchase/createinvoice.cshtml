@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Create Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Create Invoice</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <span>
+                            <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                <option value="0">Select Company</option>
+                                @if (ViewData["dsData"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in ds.Tables[0].Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+
+                    <div class="col-md-3">
+                        <span>
+                            <select id="sltCustomer" class="form-control required">
+                                <option value="0">Select Vendor</option>
+                                @if (ViewData["dsData"] != null)
+                                {
+                                    if (ds.Tables.Count > 3)
+                                    {
+                                        foreach (System.Data.DataRow dr in ds.Tables[3].Rows)
+                                        {
+                                            <option value="@dr[0]" data-code="@dr[1]" data-address="@dr[3]" data-contactperson="@dr[4]" data-mobile="@dr[5]">@dr[2]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCustomerCode" class="form-control required" placeholder="Customer Alias" disabled="disabled">
+                            <label for="txtCustomerCode">Vendor Alias</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPerson" class="form-control required" placeholder="Contact Person">
+                            <label for="txtContactPerson">Contact Person</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPersonMobile" class="form-control required" placeholder="Mobile No">
+                            <label for="txtContactPersonMobile">Mobile No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCustomerAddress" class="form-control required" placeholder="Customer Address">
+                            <label for="txtCustomerAddress">Customer Address</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label for="txtOrderDate">Purchase Date</label>
+                        <span><input type="date" id="txtPurchaseDate" class="form-control"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="txtOrderExpDate">Challan No.</label>
+                        <span><input type="text" id="txtChallanNo" class="form-control" placeholder="Challan No"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtRemarks">Purchase Order</label>
+                        <span><input type="text" id="txtPurchaseOrder" class="form-control" placeholder="Purchase Order"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xl-12 col-sm-12">
+                        <div id="viewPlaceHolder" class="table-responsive">
+                            <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="width:20%">Row Material</th>
+                                    <th>Quantity</th>
+                                    <th>Rate</th>
+                                    <th>Total Amount</th>
+                                    <th style="width:20%">Godown</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <select class="form-control input-sm">
+                                            <option>Select Material</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control input-sm qnt" /></td>
+                                    <td><input type="text" class="form-control input-sm qnt" /></td>
+                                    <td><input type="text" class="form-control input-sm" disabled="disabled" /></td>
+                                    <td>
+                                        <select class="form-control input-sm">
+                                            <option>Select Godown</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select class="form-control input-sm">
+                                            <option>Select Material</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control input-sm qnt" /></td>
+                                    <td><input type="text" class="form-control input-sm qnt" /></td>
+                                    <td><input type="text" class="form-control input-sm" disabled="disabled" /></td>
+                                    <td>
+                                        <select class="form-control input-sm">
+                                            <option>Select Godown</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="4" class="invoiceTotal" style="text-align: right;">Total Amount Before Tax:</td>
+                                    <td class="invoiceTotal">Rs. <span id="totalBeforeTax">NA</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="invoiceTotal" style="text-align: right;">GST Amount:</td>
+                                    <td class="invoiceTotal"><input type="text" id="txtGST" class="form-control input-sm" onblur="TotalInvoiceValue()" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="invoiceTotal" style="text-align: right;">Misc Exp:</td>
+                                    <td class="invoiceTotal"><input type="text" id="txtMiscExp" class="form-control input-sm" onblur="TotalInvoiceValue()" /></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="4" class="invoiceTotal" style="text-align: right;">Grand Total:</td>
+                                    <td class="invoiceTotal">Rs. <span id="grandTotal">NA</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    listurl = '@Url.Action("invoicelist")';
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            window.location.href = listurl;
+        });
+    })
+</script>
+<script src="@Url.Content("~/Scripts/user/invoice.js")"></script>

@@ -1,0 +1,33 @@
+﻿@model System.Data.DataTable
+@{Layout = null;}
+@if (Model != null && Model.Rows.Count > 0)
+{
+    <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Mold Name</th>
+            <th>Developer Code</th>
+            <th>Company</th>
+            <th>Customer</th>
+            <th>Designer</th>
+            <th>Technology</th>
+            <th>Size</th>
+            <th>Colour</th>
+            <th>Last Submition Date</th>
+            <th>Assign Date</th>
+            @*<th>Status</th>*@
+        </tr>
+        </thead>
+        
+        <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                @foreach (var cell in row.ItemArray){<td>@Html.Raw(@cell.ToString())</td>}
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else{<table class="display" border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td>No record found.</td></tr></table>}
+

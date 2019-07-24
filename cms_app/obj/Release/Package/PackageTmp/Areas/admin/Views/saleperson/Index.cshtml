@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Sale Person Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Sale Person Master</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Sale Person Master</h1>
+
+<!-- Icon Cards-->
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        @*<label for="sltState">Company</label>*@
+                        <span>
+                            <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                <option value="0">Select Company</option>
+                                @if (ViewData["dtCompany"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtCompany"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]" data-child="@dr[2]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCode" class="form-control required" placeholder="Sale Person Code">
+                            <label for="txtCode">Sale Person Code</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <input type="text" id="txtName" class="form-control required" placeholder="Sale Person name">
+                            <label for="txtName">Sale Person Name</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactNo" class="form-control" placeholder="Contact No" />
+                            <label for="txtContactNo">Contact No</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="date" id="inputDOB" class="form-control" placeholder="DOB" />
+                            <label for="inputDOB">DOB</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtAddress" class="form-control" placeholder="Address">
+                            <label for="txtAddress">Address</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="email" id="txtPanNo" class="form-control" placeholder="Pan No" />
+                            <label for="txtEmail">Pan No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtAdhar" class="form-control" placeholder="Adhar No" />
+                            <label for="txtAdhar">Adhar No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks">
+                            <label for="txtRemarks">Remarks</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="date" id="inputDOJ" class="form-control" placeholder="DOJ" />
+                            <label for="inputDOJ">DOJ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="chkActive" value="1" checked="checked"/>
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block"/>
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var isshowList = 0;
+</script>
+<script src="@Url.Content("~/Scripts/masterjs/saleperson.js")"></script>

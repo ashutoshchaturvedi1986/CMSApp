@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Godown's List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Godown</li>
+</ol>
+
+<!-- Page Content -->
+<div class="row">
+    <div class="col-xl-10 col-sm-12">
+        <h1>Godown's List</h1>
+    </div>
+    <div class="col-xl-2 col-sm-12">
+        <a class="btn btn-primary btn-block addbtn" href="@Url.Action("Index", "godown" , new { area= "admin" })">Add New</a>
+    </div>
+</div>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Added Godown's List
+            </div>
+            <div class="card-body">
+                <div id="viewPlaceHolder" class="table-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var isshowList = 1;
+</script>
+<script src="@Url.Content("~/Scripts/masterjs/mdd.js")"></script>

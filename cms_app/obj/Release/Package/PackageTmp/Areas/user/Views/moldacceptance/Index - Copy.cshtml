@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "Ordered Mold's List Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Ordered Mold Detail</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label for="spanMold" class="form-row-bold">Mold Name:</label>
+                        <span id="spanMold"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="imgMoldPic" class="form-row-bold" style="vertical-align: top;">Mold Pic:</label>
+                        <span><img id="imgMoldPic" src="" /></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Technology:</label>
+                        <span id="spanTechnology"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="imgTechPic" class="form-row-bold" style="vertical-align: top;">Tech Pac:</label>
+                        <span><img id="imgTechPic" src="" /></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Contact Person:</label>
+                        <span id="spanContactPerson"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Contact No.:</label>
+                        <span id="spanContactNo"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Follow Up Person:</label>
+                        <span id="spanFollowUpPerson"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Mold Maker:</label>
+                        <span id="spanMoldMaker"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Size:</label>
+                        <span id="spanSize"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">GST No.:</label>
+                        <span id="spanGSTNo"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Gradient Requirement:</label>
+                        <span id="spanGradientRequirement"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Shipping Instruction:</label>
+                        <span id="spanShippingInstruction"></span>
+                    </div>
+
+                    @*<div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtSize" class="form-control required" placeholder="Size" />
+                            <label for="txtSize">Size</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGSTNo" class="form-control required" placeholder="GST No" />
+                            <label for="txtGSTNo">GST No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGradientRequirement" class="form-control" placeholder="Gradient Requirement">
+                            <label for="txtGradientRequirement">Gradient Requirement</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtShippingInstruction" class="form-control" placeholder="Shipping Instruction">
+                            <label for="txtShippingInstruction">Shipping Instruction</label>
+                        </div>
+                    </div>*@
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Address:</label>
+                        <span id="spanAddress"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Remarks:</label>
+                        <span id="spanRemarks"></span>
+                    </div>
+                                    
+                    @*<div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtAddress" class="form-control" placeholder="Courier  Address">
+                            <label for="txtAddress">Address</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks">
+                            <label for="txtRemarks">Remarks</label>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Order Date:</label>
+                        <span id="spanOrderDate"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-row-bold">Last Submition Date:</label>
+                        <span id="spanLastSubmitionDate"></span>
+                    </div>                
+                    @*<div class="col-md-3">
+                        <label for="txtOrderDate" class="form-row-bold">Order Date</label>
+                        <span><input type="date" id="txtOrderDate" class="form-control required"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required"></span>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    @*<div class="col-md-2">
+                        <input id="btnSaveOrder" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                    </div>*@
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    #imgMoldPic, #imgTechPic {
+        max-height: 70px;
+        max-width: 100%;
+    }
+
+    .form-row-bold {
+        font-weight: 600;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/user/moldjs.js")"></script>
+<script language="javascript" type="text/javascript">
+    var code = '@ViewBag.OrderId';
+    $(document).ready(function () {
+        BindMoldDetail();
+    });
+
+    function BindMoldDetail() {
+        if (code.length > 0) {
+            var ur = saveurl.replace('SaveResult', 'GetMasterListForEdit');
+            $.ajax({
+                type: "POST",
+                url: ur,
+                dataType: "json",
+                data: { 'prmId': code },
+                success: function (result) {
+                    if (result != null) {
+                        var obj = result[0];
+
+                        $('#spanMold').html(obj.MoldName);
+                        $('#spanTechnology').html(obj.Technology);
+                        $('#spanContactPerson').html(obj.ContactPerson);
+                        $('#spanContactNo').html(obj.ContactNo);
+                        $('#spanFollowUpPerson').html(obj.FollowUpPersonName);
+                        $('#spanMoldMaker').html(obj.MoldMaker);
+                        $('#spanSize').html(obj.Size);
+                        $('#spanGSTNo').html(obj.GSTNo);
+                        $('#spanGradientRequirement').html(obj.GradientRequirement);
+                        $('#spanShippingInstruction').html(obj.ShippingInstruction);
+                        $('#spanAddress').html(obj.Address);
+                        $('#spanRemarks').html(obj.Remarks);
+
+                        $('#spanOrderDate').html(obj.OrderDate);
+                        $('#spanLastSubmitionDate').html(obj.LastSubmitionDate);
+                        
+
+                        if (obj.MoldPicture.trim().length > 0) {
+                            $('#imgMoldPic').attr('src', '/images/mold/' + obj.MoldPicture);
+                        }
+                        if (obj.TechPacDetail.trim().length > 0) {
+                            $('#imgTechPic').attr('src', '/images/mold/' + obj.TechPacDetail);
+                        }
+                    }
+                }, error: function (result) {
+                    alert('There is some technical error, please contact Administrator.');
+                }
+            });
+        }
+    }
+</script>

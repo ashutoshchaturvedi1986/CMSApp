@@ -1,0 +1,356 @@
+﻿
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Employee</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Employee Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+
+            <div class="row clearfix">
+                <div class="content-heading">
+                    <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Professional Information
+                </div>
+                <div class="mycontainer col-lg-12">
+                    <div class="col-lg-12 form-group form-row"></div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <label for="sltCompany">Company</label>
+                                <span>
+                                    <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                        <option value="0">Select</option>
+                                        @if (ViewData["dtCompany"] != null)
+                                        {
+                                            foreach (System.Data.DataRow dr in (ViewData["dtCompany"] as System.Data.DataTable).Rows)
+                                            {
+                                                <option value="@dr[0]">@dr[1]</option>
+                                            }
+                                        }
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <label for="sltRole">Role</label>
+                                <span>
+                                    <select id="sltRole" class="form-control">
+                                        <option value="0">Select</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <label for="txtEmployeeCode">Employee Code</label>
+                                <span><input type="text" id="txtEmployeeCode" class="form-control required" placeholder="Employee Code" /></span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <label for="txtEmployeePassword">Password</label>
+                                <span><input type="text" id="txtEmployeePassword" class="form-control" placeholder="Password" /></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="inputEmail">Email Id</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email Id" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputPhone">Phone No</label>
+                                <input type="text" id="inputPhone" class="form-control" placeholder="Phone No" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputDOJ">DOJ</label>
+                                <input type="date" id="inputDOJ" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row clearfix">
+                <div class="content-heading">
+                    <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Personal Information
+                </div>
+                <div class="mycontainer col-lg-12">
+                    <div class="col-lg-12 form-group form-row"></div>
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="FirstName" class="form-control required" placeholder="First Name" />
+                                                <label for="FirstName">First Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="MiddleName" class="form-control" placeholder="Middle Name" />
+                                                <label for="MiddleName">Middle Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="LastName" class="form-control required" placeholder="Last Name" />
+                                                <label for="LastName">Last Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="FatherName" class="form-control" placeholder="Father Name" />
+                                                <label for="FatherName">Father Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="MotherName" class="form-control" placeholder="Mother Name" />
+                                                <label for="MotherName">Mother Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <label for="inputDOB">DOB</label>
+                                                <input type="date" id="inputDOB" class="form-control" placeholder="DOB" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="txtPOB" class="form-control" placeholder="Place Of Birth" />
+                                                <label for="txtPOB">Place Of Birth</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                                                    Active
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        @*<label for="sltMaritalStatus">MaritalStatus</label>*@
+                                        <span>
+                                            <select id="sltMaritalStatus" class="form-control required">
+                                                <option value="0">Select Marital Status</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Divorced">Divorced</option>
+                                                <option value="Widowed">Widowed</option>
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        @*<label for="sltBloodGroup">Blood Group</label>*@
+                                        <span>
+                                            <select id="sltBloodGroup" class="form-control">
+                                                <option value="0">Select Blood Group</option>
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="O+">O+</option>
+                                                <option value="O-">O-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="AB-">AB-</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputPANNo" class="form-control" placeholder="PAN No" />
+                                            <label for="inputPANNo">PAN No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputPFNo" class="form-control" placeholder="PF No" />
+                                            <label for="inputPFNo">PF No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputPassportNo" class="form-control" placeholder="Passport No" />
+                                            <label for="inputPassportNo">Passport No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputDOI" class="form-control" placeholder="Date Of Issue" />
+                                            <label for="inputDOI">Date Of Issue</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputPlaceOfIssue" class="form-control" placeholder="Place Of Issue" />
+                                            <label for="inputPlaceOfIssue">Place Of Issue</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-label-group">
+                                            <input type="text" id="inputDOExpiry" class="form-control" placeholder="Date Of Expiry" />
+                                            <label for="inputDOExpiry">Date Of Expiry</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#sltCompany").change(function () {
+            var code = $(this).val();
+            $("#sltRole").empty().append('<option value="0">Select Role</option>');
+            if (code != '0') {
+                var URL = '@Url.Action("FillHierarchy")';
+                URL = URL + '?prmCompanyCode=' + code;
+                changeDropDown(URL, "#sltRole", '', 'ROLE');
+            }
+        });
+
+        if ($('#sltCompany option').length == 2) {
+            $('#sltCompany option:last').attr("selected", "selected");
+            $('#sltCompany').attr("disabled", "disabled");
+            $("#sltCompany").change();
+        }
+        toggelDiv($('.glyphicon-expand:eq(0)'));
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            if (!isFormValidate('#form1')) {
+                alert('Please fill required field.');
+                return;
+            }
+
+            // Get All selected values and text of orgunit from dropdown
+            var companyCode = $('#sltCompany').val();
+            var role = $('#sltRole').val();
+            var empCode = $('#txtEmployeeCode').val().trim();
+            var empPass = $('#txtEmployeePassword').val().trim();
+            var empEmail = $('#inputEmail').val().trim();
+            var empPhone = $('#inputPhone').val().trim();
+            var empDoj = $('#inputDOJ').val().trim();
+            var empFirstName = $('#FirstName').val().trim();
+            var empMName = $('#MiddleName').val().trim();
+            var empLName = $('#LastName').val().trim();
+            var empFatherName = $('#FatherName').val().trim();
+            var empMotherName = $('#MotherName').val().trim();
+            var empDOB = $('#inputDOB').val().trim();
+            var empPOB = $('#txtPOB').val().trim();
+            var empMaritalStatus = $('#sltMaritalStatus').val();
+            var empBlood = $('#sltBloodGroup').val();
+            var empPANNo = $('#inputPANNo').val().trim();
+            var empPFNo = $('#inputPFNo').val().trim();
+            var empPassport = $('#inputPassportNo').val().trim();
+            var empDOI = $('#inputDOI').val().trim();
+            var empPOI = $('#inputPlaceOfIssue').val().trim();
+            var empDOE = $('#inputDOExpiry').val().trim();
+            var active = $('#chkActive').prop('checked');
+            var act = $(this).attr('data-action');
+
+            var prmdata = {
+                prmEmpId: '', prmCompanyCode: companyCode, prmRole: role, prmEmpCode: empCode, prmEmpPass: empPass, prmEmailId: empEmail,
+                prmPhone: empPhone, prmDOJ: empDoj, prmFirstName: empFirstName, prmMiddleName: empMName, prmLastName: empLName, prmFatherName: empFatherName,
+                prmMotherName: empMotherName, prmDOB: empDOB, prmPOB: empPOB, prmMaritalStatus: empMaritalStatus, prmBlood: empBlood, prmPANNo: empPANNo,
+                prmPFNo: empPFNo, prmPassport: empPassport, prmDOI: empDOI, prmPOI: empPOI, prmDOE: empDOE, prmActive: active, prmAction: act
+            };
+
+            $.ajax({
+                type: "POST",
+                url: sessionurl,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Yes") {
+                        //$.blockUI();
+                        saveMasterDataForm(saveurl, prmdata, listurl);
+                        //$.unblockUI();
+                    } else {
+                        window.location.href = data;
+                        // session out here. for redirect to login
+                    }
+                }
+            });
+        });
+    })
+</script>
+
+
+
+

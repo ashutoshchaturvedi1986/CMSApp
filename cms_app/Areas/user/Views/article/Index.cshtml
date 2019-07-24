@@ -1,0 +1,502 @@
+﻿
+@{
+    ViewBag.Title = "Article's Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+
+<link href="@Url.Content("~/Scripts/JQMultiselect/jquery.multiselect.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Scripts/JQMultiselect/prettify.css")" rel="stylesheet" />
+<link href="@Url.Content("~/content/css/jquery-ui.css")" rel="stylesheet" />
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+<script src="@Url.Content("~/Scripts/JQMultiselect/jquery.multiselect.js")"></script>
+<script src="@Url.Content("~/Scripts/JQMultiselect/prettify.js")"></script>
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Article Detail</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ViewData["dsData"] != null)
+            {
+                System.Data.DataRow dr = ds.Tables[1].Rows[0];
+                <input type="hidden" id="hidMoldId" name="hidMoldId" value="@dr["MoldId"].ToString()" />
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="spanMold" class="form-row-bold">Mold Name:</label>
+                            <span id="spanMold">@dr["Mold Name"].ToString()</span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="imgMoldPic" class="form-row-bold" style="vertical-align: top;">Mold Pic:</label>
+
+                            @if (dr["Mold Picture"].ToString().Trim().Length > 0)
+                            {
+                                <span><img id="imgMoldPic" src="/images/mold/@dr["Mold Picture"].ToString()" /></span>
+                            }
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-row-bold">Technology:</label>
+                            <span id="spanTechnology">@dr["Technology"].ToString()</span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="imgTechPic" class="form-row-bold" style="vertical-align: top;">Tech Pac:</label>
+                            @if (dr["Mold Picture"].ToString().Trim().Length > 0)
+                            {
+                                <span><img id="imgTechPic" src="/images/mold/@dr["Tech Pac"].ToString()" /></span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="sltBrand" class="form-row-bold">Brand:</label>
+                            <span>
+                                <select id="sltBrand" class="form-control required">
+                                    <option value="0">Select Brand</option>
+                                    @if (ViewData["dsData"] != null)
+                                    {
+                                        foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                        {
+                                            if (dr1["MDHCode"].ToString().ToUpper() == "BRAND")
+                                            {
+                                                <option value="@dr1[0]">@dr1[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sltColor" class="form-row-bold">Colour:</label>
+                            <span>
+                                <select id="sltColor" class="form-control required">
+                                    <option value="0">Select Colour</option>
+                                    @if (ViewData["dsData"] != null)
+                                    {
+                                        foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                        {
+                                            if (dr1["MDHCode"].ToString().ToUpper() == "COLOUR")
+                                            {
+                                                <option value="@dr1[0]">@dr1[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sltSize" class="form-row-bold">Size:</label>
+                            <span>
+                                <select id="sltSize" class="form-control" multiple="multiple" style="width:95%;">
+                                    @if (ViewData["dsData"] != null)
+                                    {
+                                        foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                        {
+                                            if (dr1["MDHCode"].ToString().ToUpper() == "SIZE")
+                                            {
+                                                <option value="@dr1[0]">@dr1[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtArticleDate" class="form-row-bold">Article Date:</label>
+                            <span><input type="date" id="txtArticleDate" class="form-control required"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-row">
+                                <label>Before Process Check List added by each process.</label>
+                                <div class="form-check-inline">
+                                    <span style="margin-left:20px;">
+                                        <input type="radio" name="rad1" value="1" />Yes
+                                        <input type="radio" name="rad1" value="0" />No
+                                        <input type="radio" name="rad1" value="2" />NA
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-row">
+                                <label>After Process Check List added by each process.</label>
+                                <div class="form-check-inline">
+                                    <span style="margin-left:20px;">
+                                        <input type="radio" name="rad2" value="1" />Yes
+                                        <input type="radio" name="rad2" value="0" />No
+                                        <input type="radio" name="rad2" value="2" />NA
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                @*<div class="clearfix"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-12 col-lg-12">
+                <div class="form-check-inline">
+                    <input id="rblLanguage_0" type="radio" name="rblLanguage" value="English" checked="checked" /><label for="rblLanguage_0" style="margin: 5px;">English</label>
+                    <input id="rblLanguage_1" type="radio" name="rblLanguage" value="Hindi" /><label for="rblLanguage_1" style="margin: 5px;">Hindi</label>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="txtDescription" class="form-row-bold">Description:</label>
+                    <span>
+                        <textarea id="Description" class="form-control required" rows="6"></textarea>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>*@
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-check-inline">
+                                <input id="rblLanguage_0" type="radio" name="rblLanguage" value="English" checked="checked" /><label for="rblLanguage_0" style="margin: 5px;">English</label>
+                                <input id="rblLanguage_1" type="radio" name="rblLanguage" value="Hindi" /><label for="rblLanguage_1" style="margin: 5px;">Hindi</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3 col-lg-3">
+                            <span>
+                                <select id="sltProcess" class="form-control" multiple="multiple" style="width:95%;">
+                                    @if (ViewData["dsData"] != null)
+                                    {
+                                        foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                        {
+                                            if (dr1["MDHCode"].ToString().ToUpper() == "PGM")
+                                            {
+                                                <option value="@dr1[0]">@dr1[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+
+                        <div class="col-md-3 col-lg-3">
+                            <span>
+                                <select id="sltActivity" class="form-control" multiple="multiple" style="width:95%;">
+                                    @if (ViewData["dsData"] != null)
+                                    {
+                                        foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                        {
+                                            if (dr1["MDHCode"].ToString().ToUpper() == "ACT")
+                                            {
+                                                <option value="@dr1[0]" data-process="@dr1["ParrentMDDCode"]">@dr1[1]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-lg-2">
+                            <input id="btnCreate" type="button" value="Create" class="btn rounded-btn btn-block btn-primary" onclick="CreateSubProcess()" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12 col-lg-12">
+                            <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width:15%">Process</th>
+                                        <th style="width:15%">Sub Process</th>
+                                        <th style="width:15%" class="action">Priority</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbProcessPriority"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                    @*<div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <span>
+                                                    <select id="sltBrand" class="form-control required">
+                                                        <option value="0">Select Brand</option>
+                                                        @if (ViewData["dsData"] != null)
+                                                        {
+                                                            foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                                            {
+                                                                if (dr1["MDHCode"].ToString().ToUpper() == "BRAND")
+                                                                {
+                                                                    <option value="@dr1[0]">@dr1[1]</option>
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <span>
+                                                    <select id="sltColor" class="form-control required">
+                                                        <option value="0">Select Colour</option>
+                                                        @if (ViewData["dsData"] != null)
+                                                        {
+                                                            foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                                            {
+                                                                if (dr1["MDHCode"].ToString().ToUpper() == "COLOUR")
+                                                                {
+                                                                    <option value="@dr1[0]">@dr1[1]</option>
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <label for="sltSize" class="form-row-bold" style="vertical-align:top;">Size:</label>
+                                                <span>
+                                                    <select id="sltSize" class="form-control" multiple="multiple" style="width:95%;">
+                                                        @if (ViewData["dsData"] != null)
+                                                        {
+                                                            foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                                            {
+                                                                if (dr1["MDHCode"].ToString().ToUpper() == "SIZE")
+                                                                {
+                                                                    <option value="@dr1[0]">@dr1[1]</option>
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-md-6 col-lg-6">
+                                                <label for="txtArticleDate" class="form-row-bold">Article Date:</label>
+                                                <span><input type="date" id="txtArticleDate" class="form-control required"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-12 col-lg-12">
+                                                <div class="form-row">
+                                                    <label>Before Process Check List added by each process.</label>
+                                                    <div class="form-check-inline">
+                                                        <span style="margin-left:20px;">
+                                                            <input type="radio" name="rad1" value="1" />Yes
+                                                            <input type="radio" name="rad1" value="0" />No
+                                                            <input type="radio" name="rad1" value="2" />NA
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-lg-12">
+                                                <div class="form-row">
+                                                    <label>After Process Check List added by each process.</label>
+                                                    <div class="form-check-inline">
+                                                        <span style="margin-left:20px;">
+                                                            <input type="radio" name="rad2" value="1" />Yes
+                                                            <input type="radio" name="rad2" value="0" />No
+                                                            <input type="radio" name="rad2" value="2" />NA
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-12 col-lg-12">
+                                                <div class="form-check-inline">
+                                                    <input id="rblLanguage_0" type="radio" name="rblLanguage" value="English" checked="checked" /><label for="rblLanguage_0" style="margin: 5px;">English</label>
+                                                    <input id="rblLanguage_1" type="radio" name="rblLanguage" value="Hindi" /><label for="rblLanguage_1" style="margin: 5px;">Hindi</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="txtDescription" class="form-row-bold">Description:</label>
+                                                    <span>
+                                                        <textarea id="Description" class="form-control required" rows="6"></textarea>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-4 col-lg-4">
+                                                <span>
+                                                    <select id="sltProcess" class="form-control" multiple="multiple" style="width:95%;">
+                                                        @if (ViewData["dsData"] != null)
+                                                        {
+                                                            foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                                            {
+                                                                if (dr1["MDHCode"].ToString().ToUpper() == "PGM")
+                                                                {
+                                                                    <option value="@dr1[0]">@dr1[1]</option>
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-md-5 col-lg-5">
+                                                <span>
+                                                    <select id="sltActivity" class="form-control" multiple="multiple" style="width:95%;">
+                                                        @if (ViewData["dsData"] != null)
+                                                        {
+                                                            foreach (System.Data.DataRow dr1 in ds.Tables[0].Rows)
+                                                            {
+                                                                if (dr1["MDHCode"].ToString().ToUpper() == "ACT")
+                                                                {
+                                                                    <option value="@dr1[0]" data-process="@dr1["ParrentMDDCode"]">@dr1[1]</option>
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3">
+                                                <input id="btnCreate" type="button" value="Create" class="btn rounded-btn btn-block btn-primary" onclick="CreateSubProcess()" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-12 col-lg-12">
+                                                <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Process</th>
+                                                        <th>Sub Process</th>
+                                                        <th class="action">Priority</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbProcessPriority">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-2">
+                                <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                            </div>
+                            <div class="col-md-2">
+                                <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                            </div>
+                        </div>
+                    </div>
+
+                    }
+
+
+                </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-row-bold {font-weight: 600;}
+    input[type="radio"]{cursor:pointer;}
+    .required,.ui-multiselect-menu{border:solid 1px rgb(169, 169, 169) !important;}
+    .required.errorvalidate{border:solid 1px red !important;}
+    .ui-multiselect{height:38px;width: 100% !important;}
+    .ui-multiselect .ui-icon-triangle-1-s{background-position: -64px -12px !important;}
+    @@font-face {
+        /* Font Name to use*/
+        font-family: 'HindiFont';
+        font-size: large;
+        src: url('../../../../content/fontawesome-free/webfonts/k010.TTF') format('truetype');
+    }
+    .hindiFont {
+        /* Assign the font*/
+        font-family: 'HindiFont';
+        font-size:large;
+        /*here we need to access @@font-face also*/
+    }
+    .formPriority{
+        display: block;width: 100%;font-size: 1rem;line-height: 1.5;color: #495057;background-color: #fff;background-clip: padding-box;
+        border: 1px solid #ced4da;border-radius: .25rem;transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/user/article.js")"></script>
+<script language="javascript" type="text/javascript">
+    var subProcessList = new Array();
+    $(function () {
+        $("#sltProcess").multiselect({ selectedList: 1, noneSelectedText: "Select Process", selectedText: '# Process(s)' });
+        $("#sltSize").multiselect({ selectedList: 1, noneSelectedText: "Select Size", selectedText: '# Size(s)' });
+        $("#sltActivity").multiselect({ selectedList: 1, noneSelectedText: "Select Sub Process", selectedText: '# Sub Process(s)' });
+
+        $("#sltProcess").change(function () {
+            var process = getSelectedValue('#sltProcess', ',');
+            if (process.length > 0) {
+                hideSubProcess(process);
+            }
+        });
+
+        $('#sltActivity option').each(function () {
+            var $t = $(this);
+            var o = new Array();
+            o.SubProcessCode = $t.val();
+            o.SubProcessName = $t.text();
+            o.ProcessCode = $t.attr('data-process');
+            subProcessList.push(o);
+        });
+    });
+</script>

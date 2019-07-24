@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Company</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Company Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtName" class="form-control required" placeholder="Company name" autofocus="autofocus" />
+                            <label for="txtName">Company Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCode" class="form-control required" placeholder="Company Code" />
+                            <label for="txtCode">Company Code</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCompanyAlias" class="form-control required" placeholder="Company Alias" />
+                            <label for="txtCompanyAlias">Company Alias</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <label for="sltState">State</label>
+                        <span>
+                            <select id="sltState" class="form-control required" autofocus="autofocus">
+                                <option value="0">Select</option>
+                                @if (ViewData["dtState"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtState"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="sltCity">City</label>
+                        <span>
+                            <select id="sltCity" class="form-control required">
+                                <option value="0">Select City</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtAddress">Address</label>
+                        <span><input type="text" id="txtAddress" class="form-control" placeholder="Address" /></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtBankName" class="form-control" placeholder="Bank Name">
+                            <label for="txtBankName">Bank Name <span class="required">*</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtBankAcctNo" class="form-control" placeholder="Bank AcctNo" />
+                            <label for="txtBankAcctNo">Bank AcctNo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtBranchName" class="form-control" placeholder="Branch Name" />
+                            <label for="txtBranchName">Branch Name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtPANNo" class="form-control" placeholder="PAN No" />
+                            <label for="txtPANNo">PAN No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtMICRNo" class="form-control" placeholder="MICR No" />
+                            <label for="txtMICRNo">MICR No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGST" class="form-control" placeholder="GST No" />
+                            <label for="txtGST">GST No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="email" id="txtEmail" class="form-control" placeholder="Email Id" />
+                            <label for="txtEmail">Email Id</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtWebsite" class="form-control" placeholder="Website" />
+                            <label for="txtWebsite">Website</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtPhone" class="form-control" placeholder="Phone No" />
+                            <label for="txtPhone">Phone No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtFax" class="form-control" placeholder="Fax No" />
+                            <label for="txtFax">Fax No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPerson" class="form-control" placeholder="Contact Person" />
+                            <label for="txtContactPerson">Contact Person</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPersonMob" class="form-control" placeholder="Mobile No" />
+                            <label for="txtContactPersonMob">Mobile No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="@Url.Content("~/Scripts/masterjs/company.js")"></script>
+

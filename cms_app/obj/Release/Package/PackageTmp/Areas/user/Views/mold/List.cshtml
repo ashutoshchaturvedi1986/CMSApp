@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Mold's List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Mold Master Generation</li>
+</ol>
+
+<!-- Page Content -->
+<div class="row">
+    <div class="col-xl-12 col-md-12 col-sm-12">
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-xl-4 col-md-4 col-sm-12">
+                    <a class="btn btn-secondary btn-block addbtn moldgenerate" data-id="1" href="javascript:void(0)">New Mold and New Developer Code</a>
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-12">
+                    <a class="btn btn-secondary btn-block addbtn moldgenerate" data-id="2" href="javascript:void(0)">Existing Mold and New Developer Code</a>
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-12">
+                    <a class="btn btn-secondary btn-block addbtn moldgenerate" data-id="3" href="javascript:void(0)">Existing Mold and Existing Developer Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="divMoldList" class="card hide">
+            <div class="card-header">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div class="form-group1">
+                        <div class="form-row">
+                            <div class="col-xl-10 col-md-10 col-sm-12">
+                                <i class="fas fa-table"></i>
+                                <span>Added Mold Master's List</span>
+                            </div>
+                            <div class="col-xl-2 col-md-2 col-sm-12">
+                                <a class="btn btn-primary btn-block addbtn moldadd hide" href="@Url.Action("Index", "mold" , new { area= "user" })">Add New</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="viewPlaceHolder" class="table-responsive">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/user/moldjs.js")"></script>

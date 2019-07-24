@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Courier Submition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Sample list for courier</li>
+</ol>
+
+<!-- Page Content -->
+
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="divMoldList" class="card hide1">
+            <div class="card-header">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div class="form-group1">
+                        <div class="form-row">
+                            <div class="col-xl-10 col-md-10 col-sm-12">
+                                <i class="fas fa-table"></i>
+                                <span>Sample list for Courier</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="viewPlaceHolder" class="table-responsive">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/user/courier.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        showPendingCourierList(reporturl);
+    })
+</script>

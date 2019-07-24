@@ -1,0 +1,385 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Employee</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Employee Master</h1>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (Model != null && Model.Rows.Count > 0)
+            {
+                <span id="hidId" style="display:none;">@Model.Rows[0]["EmployeeId"]</span>
+                <input type="hidden" id="hidR" value="@Model.Rows[0]["HRRoleCode"]" />
+                <input type="hidden" id="hidM" value="@Model.Rows[0]["MaritalStatus"]" />
+                <input type="hidden" id="hidB" value="@Model.Rows[0]["BloodGroup"]" />
+
+                <div class="row clearfix">
+                    <div class="content-heading">
+                        <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Professional Information
+                    </div>
+                    <div class="mycontainer col-lg-12">
+                        <div class="col-lg-12 form-group form-row"></div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label for="sltCompany">Company</label>
+                                    <span>
+                                        <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                            <option value="0">Select</option>
+                                            @if (ViewData["dtCompany"] != null)
+                                            {
+                                                foreach (System.Data.DataRow dr in (ViewData["dtCompany"] as System.Data.DataTable).Rows)
+                                                {
+                                                    if (Model.Rows[0][1].ToString() == dr[0].ToString())
+                                                    {
+                                                        <option value="@dr[0]" selected="selected">@dr[1]</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@dr[0]">@dr[1]</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </span>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label for="sltRole">Role</label>
+                                    <span>
+                                        <select id="sltRole" class="form-control">
+                                        </select>
+                                    </span>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label for="txtEmployeeCode">Employee Code</label>
+                                    <span><input type="text" id="txtEmployeeCode" class="form-control required" value="@Model.Rows[0]["EmployeeCode"]" /></span>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label for="txtEmployeePassword">Password</label>
+                                    <span><input type="text" id="txtEmployeePassword" class="form-control" value="@Model.Rows[0]["AuthPassword"]" /></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <div class="form-label-group">
+                                        <input type="email" id="inputEmail" class="form-control" value="@Model.Rows[0]["EmailID"]" />
+                                        <label for="inputEmail">Email Id</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-label-group">
+                                        <input type="text" id="inputPhone" class="form-control" value="@Model.Rows[0]["ContactNo"]" />
+                                        <label for="inputPhone">Phone No</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-label-group">
+                                        <input type="date" id="inputDOJ" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row clearfix">
+                    <div class="content-heading">
+                        <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Personal Information
+                    </div>
+                    <div class="mycontainer col-lg-12">
+                        <div class="col-lg-12 form-group form-row"></div>
+
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="FirstName" class="form-control required" value="@Model.Rows[0]["FirstName"]" />
+                                                    <label for="FirstName">First Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="MiddleName" class="form-control" value="@Model.Rows[0]["MiddleName"]" />
+                                                    <label for="MiddleName">Middle Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="LastName" class="form-control required" value="@Model.Rows[0]["LastName"]" />
+                                                    <label for="LastName">Last Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="FatherName" class="form-control" value="@Model.Rows[0]["FatherName"]" />
+                                                    <label for="FatherName">Father Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="MotherName" class="form-control" value="@Model.Rows[0]["MotherName"]" />
+                                                    <label for="MotherName">Mother Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="inputDOB" class="form-control" placeholder="DOB" />
+                                                    <label for="inputDOB">DOB</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-label-group">
+                                                    <input type="text" id="txtPOB" class="form-control" value="@Model.Rows[0]["MotherName"]" />
+                                                    <label for="txtPOB">Place Of Birth</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="col-md-3">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        @if (Convert.ToBoolean(Model.Rows[0]["Active"]))
+                                                        {
+                                                            <input type="checkbox" id="chkActive" value="1" checked="checked" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="chkActive" value="0" />
+                                                        }
+                                                        Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="sltMaritalStatus">MaritalStatus</label>
+                                            <span>
+                                                <select id="sltMaritalStatus" class="form-control required">
+                                                    <option value="0">Select</option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Divorced">Divorced</option>
+                                                    <option value="Widowed">Widowed</option>
+                                                </select>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="sltBloodGroup">Blood Group</label>
+                                            <span>
+                                                <select id="sltBloodGroup" class="form-control">
+                                                    <option value="0">Select</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A-">A-</option>
+                                                    <option value="B+">B+</option>
+                                                    <option value="B-">B-</option>
+                                                    <option value="O+">O+</option>
+                                                    <option value="O-">O-</option>
+                                                    <option value="AB+">AB+</option>
+                                                    <option value="AB-">AB-</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputPANNo" class="form-control" value="@Model.Rows[0]["PanNo"]" />
+                                                <label for="inputPANNo">PAN No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputPFNo" class="form-control" value="@Model.Rows[0]["PFNo"]" />
+                                                <label for="inputPFNo">PF No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputPassportNo" class="form-control" value="@Model.Rows[0]["PassportNo"]" />
+                                                <label for="inputPassportNo">Passport No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputDOI" class="form-control" placeholder="Date Of Issue" />
+                                                <label for="inputDOI">Date Of Issue</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputPlaceOfIssue" class="form-control" value="@Model.Rows[0]["PlaceOfIssue"]" />
+                                                <label for="inputPlaceOfIssue">Place Of Issue</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="inputDOExpiry" class="form-control" placeholder="Date Of Expiry" />
+                                                <label for="inputDOExpiry">Date Of Expiry</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnUpdate" type="submit" data-action="UPDATE" value="Update" class="btn rounded-btn btn-block" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cid = $('#hidR').val();
+        //var hm = $('#hidM').val();
+        //var hb = $('#hidB').val();
+        
+        if ($('#hidM').val() != '0')
+            $("#sltMaritalStatus").val($('#hidM').val());
+        if ($('#hidB').val() != '0')
+            $("#sltBloodGroup").val($('#hidB').val());
+
+        $("#sltCompany").change(function () {
+            var code = $(this).val();
+            $("#sltRole").empty().append('<option value="0">Select Role</option>');
+            if (code != '0') {
+                var URL = '@Url.Action("FillHierarchy")';
+                URL = URL + '?prmCompanyCode=' + code;
+                changeDropDown(URL, "#sltRole", cid, 'ROLE');
+                $('#hidId').val('');
+            }
+        });
+
+        $("#sltCompany").change();
+        toggelDiv($('.glyphicon-expand:eq(0)'));
+        if ($('#sltCompany option').length == 2)
+            $('#sltCompany').attr("disabled", "disabled");
+
+        $("#btnUpdate").click(function () {
+            if (!isFormValidate('#form1')) {
+                alert('Please fill required field.');
+                return;
+            }
+
+            var empId = $('#hidId').text().trim();
+            var companyCode = $('#sltCompany').val();
+            var role = $('#sltRole').val();
+            var empCode = $('#txtEmployeeCode').val().trim();
+            var empPass = $('#txtEmployeePassword').val().trim();
+            var empEmail = $('#inputEmail').val().trim();
+            var empPhone = $('#inputPhone').val().trim();
+            var empDoj = $('#inputDOJ').val().trim();
+            var empFirstName = $('#FirstName').val().trim();
+            var empMName = $('#MiddleName').val().trim();
+            var empLName = $('#LastName').val().trim();
+            var empFatherName = $('#FatherName').val().trim();
+            var empMotherName = $('#MotherName').val().trim();
+            var empDOB = $('#inputDOB').val().trim();
+            var empPOB = $('#txtPOB').val().trim();
+            var empMaritalStatus = $('#sltMaritalStatus').val();
+            var empBlood = $('#sltBloodGroup').val();
+            var empPANNo = $('#inputPANNo').val().trim();
+            var empPFNo = $('#inputPFNo').val().trim();
+            var empPassport = $('#inputPassportNo').val().trim();
+            var empDOI = $('#inputDOI').val().trim();
+            var empPOI = $('#inputPlaceOfIssue').val().trim();
+            var empDOE = $('#inputDOExpiry').val().trim();
+            var active = $('#chkActive').prop('checked');
+            var act = $(this).attr('data-action');
+
+            var prmdata = {
+                prmEmpId: empId, prmCompanyCode: companyCode, prmRole: role, prmEmpCode: empCode, prmEmpPass: empPass, prmEmailId: empEmail,
+                prmPhone: empPhone, prmDOJ: empDoj, prmFirstName: empFirstName, prmMiddleName: empMName, prmLastName: empLName, prmFatherName: empFatherName,
+                prmMotherName: empMotherName,prmDOB: empDOB, prmPOB: empPOB, prmMaritalStatus: empMaritalStatus, prmBlood: empBlood, prmPANNo: empPANNo,
+                prmPFNo: empPFNo, prmPassport: empPassport, prmDOI: empDOI, prmPOI: empPOI, prmDOE: empDOE,prmActive: active, prmAction: act
+            };
+
+            $.ajax({
+                type: "POST",
+                url: sessionurl,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Yes") {
+                        saveMasterDataForm(saveurl, prmdata, listurl);
+                    } else {
+                        window.location.href = data;
+                        // session out here. for redirect to login
+                    }
+                }
+            });
+        });
+    });
+</script>

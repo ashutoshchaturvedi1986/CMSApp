@@ -1,0 +1,325 @@
+﻿@{
+    ViewBag.Title = "Courier's Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var userRole = "";
+    if (Session["userInfo"] != null)
+    {
+        cms_app.Models.LoginModalData mo = Session["userInfo"] as cms_app.Models.LoginModalData;
+        userRole = mo.userRole;
+    }
+
+    System.Data.DataSet ds = new System.Data.DataSet();
+    if (ViewData["dsData"] != null)
+    {
+        ds = ViewData["dsData"] as System.Data.DataSet;
+    }
+}
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Courier Detail</li>
+</ol>
+
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            @if (ds != null && ds.Tables.Count > 1)
+            {
+                System.Data.DataRow drSample = ds.Tables[1].Rows[0];
+                <input type="hidden" id="hidMoldId" value="@drSample["MoldId"].ToString()" />
+                <input type="hidden" id="hidCourierId" value="@drSample["CourierId"].ToString()" />
+                <input type="hidden" id="hidSamplePicture" value="@drSample["SamplePicture"].ToString()" />
+                <input type="hidden" id="hidStatus" value="@drSample["Status"].ToString()" />
+
+                <div class="row clearfix">
+                    <div class="content-heading">
+                        <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Courier Information
+                    </div>
+                    <div class="mycontainer col-lg-12">
+                        <div class="col-lg-12 form-group form-row"></div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label>Courier By</label>
+                                    <span>
+                                        <select id="sltTransporter" class="form-control required" autofocus="autofocus">
+                                            <option value="0">Select Transporter</option>
+                                            @foreach (System.Data.DataRow dr in ds.Tables[0].Rows)
+                                            {
+                                                if (drSample["TransporterId"].ToString() == dr[0].ToString())
+                                                {
+                                                    <option value="@dr[0]" selected="selected">@dr[1]</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@dr[0]">@dr[1]</option>
+                                                }
+                                            }
+                                        </select>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="txtCourierNo">Courier No</label>
+                                    <span>
+                                        <input type="text" id="txtCourierNo" class="form-control required" value="@drSample["CourierNo"]" />
+                                    </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="txtRemarks">Remarks</label>
+                                    <span>
+                                        @if (drSample["Remarks"].ToString().Length > 0)
+                                        {
+                                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" value="@drSample["Remarks"]" />
+                                        }
+                                        else
+                                        {
+                                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" />
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="margin-top: 10px;">
+                                <div class="col-md-3">
+                                    <label for="sampleUpload">Sample Pic</label>
+                                    <span>
+                                        <input type="file" name="sampleUpload" id="sampleUpload" class="form-control" style="padding-top:3px;">
+                                        @if (drSample["SamplePicture"].ToString().Length > 0)
+                                        {
+                                            <img id="imgSamplePic" class="uploadedimg" src="/images/sample/@drSample["SamplePicture"]" />
+                                        }
+                                        else
+                                        {
+                                            <img id="imgSamplePic" class="uploadedimg" src="" />
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                if (userRole.ToUpper().Trim() == "ADMIN")
+                {
+                    <div class="row clearfix">
+                        <div class="content-heading">
+                            <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Admin Information
+                        </div>
+                        <div class="mycontainer col-lg-12">
+                            <div class="col-lg-12 form-group form-row"></div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="sltChangeStatus">Status</label>
+                                        <span>
+                                            <select id="sltChangeStatus" class="form-control">
+                                                <option value="">Select</option>
+                                                <option value="C">Change</option>
+                                                <option value="A">Approved</option>
+                                                <option value="CL">Closed</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDesigner">Assign Designer</label>
+                                        <span>
+                                            <select id="sltDesigner" class="form-control">
+                                                <option value="0">Select</option>
+                                                @foreach (System.Data.DataRow dr in ds.Tables[2].Rows)
+                                                {
+                                                    if (drSample["DesignerId"].ToString() == dr[0].ToString())
+                                                    {
+                                                        <option value="@dr[0]" selected="selected">@dr[1]</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@dr[0]">@dr[1]</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDate">Assign Date</label>
+                                        <span><input type="date" id="txtAssignDate" class="form-control required"></span>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="txtAssignRemarks">Remarks</label>
+                                        <span><input type="text" id="txtAssignRemarks" class="form-control" placeholder="Remarks" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+                @*if (userRole.ToUpper().Trim() == "DESIGNER")
+                {
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        System.Data.DataRow dr1 = ds.Tables[2].Rows[0];
+                        <div class="row clearfix">
+                            <div class="content-heading">
+                                <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Admin Information
+                            </div>
+                            <div class="mycontainer col-lg-12">
+                                <div class="col-lg-12 form-group form-row"></div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label for="spanMold" class="form-row-bold">Assign Date:</label>
+                                            <span id="spanMold">@dr1["Admin Assign Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="imgMoldPic" class="form-row-bold">Last Submition Date:</label>
+                                            <span id="spanMold">@dr1["Admin Last Submition Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-row-bold">Remarks:</label>
+                                            <span id="spanTechnology">@dr1["AdminRemarks"].ToString()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+
+
+                    <div class="row clearfix">
+                        <div class="content-heading">
+                            <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Designer Information
+                        </div>
+                        <div class="mycontainer col-lg-12">
+                            <div class="col-lg-12 form-group form-row"></div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <input id="chkIsOk" type="checkbox"><label for="chkIsOk" style="margin: 5px;">Request For Change</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDate" class="form-row-bold">Assign Date</label>
+                                        <span><input type="date" id="txtAssignDate" class="form-control required" readonly="readonly"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required" readonly="readonly"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="txtRemarks" class="form-row-bold">Remarks</label>
+                                        <span><input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+                else
+                {
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        System.Data.DataRow dr1 = ds.Tables[2].Rows[0];
+                        <div class="row clearfix">
+                            <div class="content-heading">
+                                <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Designer Information
+                            </div>
+                            <div class="mycontainer col-lg-12">
+                                <div class="col-lg-12 form-group form-row"></div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label for="spanMold" class="form-row-bold">Assign Date:</label>
+                                            <span id="spanMold">@dr1["Designer Assign Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="imgMoldPic" class="form-row-bold">Last Submition Date:</label>
+                                            <span id="spanMold">@dr1["Designer Last Submition Date"].ToString()</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-row-bold">Remarks:</label>
+                                            <span id="spanTechnology">@dr1["DesignerRemarks"].ToString()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+
+                    <div class="row clearfix">
+                        <div class="content-heading">
+                            <a href="javascript:void(0)" class="glyphicon-expand"><span>+</span></a>Admin Information
+                        </div>
+                        <div class="mycontainer col-lg-12">
+                            <div class="col-lg-12 form-group form-row"></div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <label for="txtAssignDate" class="form-row-bold">Assign Date</label>
+                                        <span><input type="date" id="txtAssignDate" class="form-control required"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="txtLastSubmitionDate" class="form-row-bold">Last Submition Date</label>
+                                        <span><input type="date" id="txtLastSubmitionDate" class="form-control required"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="txtRemarks" class="form-row-bold">Remarks</label>
+                                        <span><input type="text" id="txtRemarks" class="form-control" placeholder="Remarks" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }*@
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block" />
+                            <input id="btnUpdate" type="submit" data-action="UPDATE" value="Update" class="btn rounded-btn btn-block" style="margin-top:0px;" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/user/courier.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //resetDate();
+        var cId = $('#hidCourierId').val().trim();
+        if (cId.length > 0) {
+            $('#btnUpdate').show();
+            $('#btnSave').hide();
+            $('#sltChangeStatus').val($('#hidStatus').val());
+            
+        } else {
+            $('#btnUpdate').hide();
+            $('#btnSave').show();
+        }
+    });
+</script>
+

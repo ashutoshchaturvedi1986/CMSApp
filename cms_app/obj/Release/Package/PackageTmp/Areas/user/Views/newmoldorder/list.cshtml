@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Mold's List For Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">New Mold's List For Order</li>
+</ol>
+
+<!-- Page Content -->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                New Mold's List For Order
+            </div>
+            <div class="card-body">
+                <div id="viewPlaceHolder" class="table-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="@Url.Content("~/Scripts/user/moldjs.js")"></script>
+<script type="text/javascript">
+    var url = '@Url.Action("GetReport")';
+
+    $(document).ready(function () {
+        showMoldListForOrder(url);
+    })
+
+    function CreateNewDeveloperCode(code) {
+        var ur = saveurl.replace('SaveResult', 'Index');
+        window.location.href = ur + "?prmId=" + code;
+    }
+</script>
+

@@ -1,0 +1,287 @@
+﻿
+@{
+    ViewBag.Title = "Material Creation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Material Creation</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Material Creation Master</h1>
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xl-4 col-md-4 col-sm-12">
+                        <span>
+                            <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                <option value="0">Select Company</option>
+                                @if (ViewData["dtCompany"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtCompany"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12">
+                        <span>
+                            <select id="sltMaterialGroup" class="form-control required" autofocus="autofocus">
+                                @if (ViewData["dtMaterialGroup"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtMaterialGroup"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-12">
+                        <span>
+                            <select id="sltUnit" class="form-control required" autofocus="autofocus">
+                                @if (ViewData["dtUnit"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtUnit"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xl-4 col-md-4 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="text" id="txtName" class="form-control required" placeholder="Material name" />
+                            <label for="txtName">Material Name</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="text" id="txtOpeningStock" class="form-control required" placeholder="Opening Stock" />
+                            <label for="txtOpeningStock">Opening Stock</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-md-2 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="text" id="txtReorder" class="form-control required" placeholder="Reorder Level" />
+                            <label for="txtReorder">Reorder Level</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xl-4 col-md-4 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="file" name="materialUpload" id="materialUpload" class="form-control" style="padding-top:3px;">
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-md-5 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks">
+                            <label for="txtRemarks">Remarks</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="chkActive" value="1" checked="checked">
+                        Active
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xl-2 col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn btn-primary rounded-btn btn-block" />
+                    </div>
+                    
+                    @*<div class="col-xl-2 col-md-2">
+                        <input id="sendMail" type="submit" data-action="INSERT" value="Ashu" class="btn btn-primary rounded-btn btn-block" />
+                    </div>*@
+
+                    <div class="col-xl-2 col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn btn-secondary rounded-btn btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@using (Html.BeginForm("UploadExcelFile", "materialcreation", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-lg-12">
+        <div class="form" style="display: block;">
+            <h4>Send Mail</h4>
+            <div class="col-lg-12 mg-20 sub-form">
+
+                <div class="col-lg-7 col-sm-7 col-md-7 mg-5 rpl">
+                    <label>Attachment</label>
+                    <span class="field">
+                        <input type="file" id="files" name="files" class="form-control" />
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-12 rpl">
+                <input type="submit" value="Send Mail" id="sendMail" class="add" />
+            </div>
+        </div>
+    </div>
+}*@
+
+
+
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        if ($('#sltCompany option').length == 2) {
+            $('#sltCompany option:last').attr("selected", "selected");
+            $('#sltCompany').attr("disabled", "disabled");
+        }
+
+        $("#materialUpload").change(function () {
+            if ($(this).val() != '') {
+                var fileExtension = ['jpeg', 'jpg', 'png'];
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    alert("Only formats are allowed : " + fileExtension.join(', '));
+                    $(this).val('');
+                }
+                //$('#successDiv,#errorContainer').hide();
+                //$('#uploadData').show();
+                //$('p#finalMsg').text('');
+            }
+        });
+
+        //$("#btnSave").click(function () {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: sessionurl,
+        //        dataType: "json",
+        //        success: function (data) {
+        //            if (data == "Yes") {
+        //                //$.blockUI();
+        //                saveMasterDataForm(saveurl, prmdata, listurl);
+        //                //$.unblockUI();
+        //            } else {
+        //                window.location.href = data;
+        //                // session out here. for redirect to login
+        //            }
+        //        }
+        //    });
+        //});
+
+        $('#btnSave').click(function () {
+            if (!isFormValidate('#form1')) {
+                alert('Please fill required field.');
+                return;
+            }
+
+            var photo = '';
+            var file = $('#materialUpload');
+            var fileData = new FormData();
+            var fileUpload = file.get(0);
+            var files = fileUpload.files;
+
+            var fSize = 0;
+            var fileSize = 2;
+            var isExtension = true;
+            if (files.length > 0) {
+                for (var i = 0; i < files.length; i++) {
+                    fSize = parseInt(fSize) + parseInt(files[i].size);
+                    fileData.append(files[i].name, files[i]);
+                    var splitFileName = files[i].name.split('.');
+                    photo = splitFileName;
+                    var extension = ["JPEG", "JPG", "PNG"];
+                    if (extension.indexOf(splitFileName[splitFileName.length - 1].toUpperCase()) != -1) { }
+                    else {
+                        isExtension = false;
+                    }
+                }
+            }
+            //if (fSize > parseInt(fileSize * 1024)) {
+            //    alert('File size should be less than ' + Math.round(parseFloat(parseInt(fileSize) / 1024), 2) + 'MB.');
+            //    return false;
+            //}
+
+            // Get All selected values and text of orgunit from dropdown
+            var group = $('#sltMaterialGroup').val();
+            var name = $('#txtName').val().trim();
+            var unit = $('#sltUnit').val();
+            var comp = $('#sltCompany').val();
+            var ol = $('#txtReorder').val().trim();
+            var op = $('#txtOpeningStock').val().trim();
+            var remarks = $('#txtRemarks').val().trim();
+            var active = $('#chkActive').prop('checked') ? 1 : 0;
+            var action = $(this).attr('data-action');
+
+            fileData.append('hidId', 0);
+            fileData.append('sltMaterialGroup', group);
+            fileData.append('txtName', name);
+            fileData.append('sltUnit', unit);
+            fileData.append('sltCompany', comp);
+            fileData.append('txtReorder', ol);
+            fileData.append('txtOpeningStock', op);
+            fileData.append('txtRemarks', remarks);
+            fileData.append('hidChecked', active);
+            fileData.append('hidAction', action);
+
+            if (isExtension != false) {
+                $.ajax({
+                    type: "POST",
+                    url: sessionurl,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "Yes") {
+
+                            //saveMasterDataForm(saveurl, prmdata, listurl);
+                            saveMasterDataFormWithFile(saveurl, fileData, listurl);
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: saveurl,
+                            //    contentType: false, // Not to set any content header
+                            //    processData: false, // Not to process data
+                            //    data: fileData,
+                            //    dataType: "json",
+                            //    success: function (data) {
+                            //        alert(data.msg);
+
+                            //    }, error: function (result) {
+                            //        alert('There is some technical error, please contact Administrator.');
+                            //    }
+                            //});
+                        } else {
+                            window.location.href = data;
+                            // session out here. for redirect to login
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+

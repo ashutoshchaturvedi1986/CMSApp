@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Transporter Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("index", "dashboard" , new { area= "admin" })">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Transporter Master</li>
+</ol>
+
+<!-- Page Content -->
+<h1>Transporter Master</h1>
+
+<!-- Icon Cards-->
+<!-- Icon Cards-->
+<div class="row">
+    <div class="col-xl-12 col-sm-12 mb-3">
+        <div id="form1" class="card-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        @*<label for="sltState">Company</label>*@
+                        <span>
+                            <select id="sltCompany" class="form-control required" autofocus="autofocus">
+                                <option value="0">Select Company</option>
+                                @if (ViewData["dtCompany"] != null)
+                                {
+                                    foreach (System.Data.DataRow dr in (ViewData["dtCompany"] as System.Data.DataTable).Rows)
+                                    {
+                                        <option value="@dr[0]" data-child="@dr[2]">@dr[1]</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-label-group">
+                            <input type="text" id="txtCode" class="form-control required" placeholder="Transporter Code">
+                            <label for="txtCode">Transporter Code</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <input type="text" id="txtName" class="form-control required" placeholder="Transporter name">
+                            <label for="txtName">Transporter Name</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="email" id="txtEmail" class="form-control" placeholder="Email Id" />
+                            <label for="txtEmail">Email Id</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtGST" class="form-control" placeholder="GST No" />
+                            <label for="txtGST">GST No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtPANNo" class="form-control" placeholder="PAN No" />
+                            <label for="txtPANNo">PAN No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactPerson" class="form-control" placeholder="Contact Person" />
+                            <label for="txtContactPerson">Contact Person</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label-group">
+                            <input type="text" id="txtContactNo" class="form-control" placeholder="Contact No" />
+                            <label for="txtContactNo">Contact No</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-12">
+                        <div class="form-label-group">
+                            <input type="text" id="txtWebsite" class="form-control" placeholder="Website" />
+                            <label for="txtWebsite">Website</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtAddress" class="form-control" placeholder="Address">
+                            <label for="txtAddress">Address</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" id="txtRemarks" class="form-control" placeholder="Remarks">
+                            <label for="txtRemarks">Remarks</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="chkActive" value="1" checked="checked"/>
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <input id="btnSave" type="submit" data-action="INSERT" value="Save" class="btn rounded-btn btn-block"/>
+                    </div>
+                    <div class="col-md-2">
+                        <input id="btnCancel" type="button" value="Cancel" class="btn rounded-btn btn-block"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var isshowList = 0;
+</script>
+<script src="@Url.Content("~/Scripts/masterjs/transporter.js")"></script>
